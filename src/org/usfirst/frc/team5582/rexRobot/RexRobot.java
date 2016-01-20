@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5582.rexRobot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RexRobot extends IterativeRobot {
 
     Command firstCommand;
+    AnalogInput ultrasonicSensor;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -29,6 +31,7 @@ public class RexRobot extends IterativeRobot {
     public void robotInit() {
 		CommandBase.init();
 		firstCommand = new ArcadeDrive();
+		ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
     }
 	
 	/**
@@ -64,6 +67,7 @@ public class RexRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("ultrasonic range", ultrasonicSensor.getVoltage());
     }
     
     /**
