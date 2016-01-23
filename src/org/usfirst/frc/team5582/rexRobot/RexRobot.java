@@ -67,7 +67,10 @@ public class RexRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("ultrasonic range", ultrasonicSensor.getVoltage());
+        double voltage = ultrasonicSensor.getVoltage();
+        double inches = (voltage/9.766)*1000-6;
+        SmartDashboard.putNumber("raw ultrasonic range", voltage);
+        SmartDashboard.putNumber("inches ultrasonic range", inches);
     }
     
     /**
