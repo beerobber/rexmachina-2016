@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  * 
- * Branch by CWT
+ * Branch named ctaylor
  */
 public class RexRobot extends IterativeRobot {
 
