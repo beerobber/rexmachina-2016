@@ -2,11 +2,8 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
-
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -15,7 +12,6 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class DriveTrain extends Subsystem {
 	
-	Encoder encoder;
 	RobotDrive rexDrive;
 	CANTalon leftTalon, rightTalon;
 
@@ -43,7 +39,6 @@ public class DriveTrain extends Subsystem {
     	leftTalon = new CANTalon(RobotMap.leftMotorCAN);
     	rightTalon = new CANTalon(RobotMap.rightMotorCAN);
     	rexDrive = new RobotDrive(leftTalon, rightTalon);
-    	encoder = new Encoder(1, 2, true, EncodingType.k4X);
     }
     
     public void tankDrive(double leftY, double rightY) {
