@@ -19,7 +19,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  * 
+<<<<<<< HEAD
  * Branch named ctaylor
+=======
+ * Branch by Erik H.
+ * 
+>>>>>>> f14fa0491d040710c78e55b2f204160a5dc306de
  */
 public class RexRobot extends IterativeRobot {
 
@@ -32,6 +37,10 @@ public class RexRobot extends IterativeRobot {
     public void robotInit() {
 		CommandBase.init();
 		firstCommand = new ArcadeDrive();
+<<<<<<< HEAD
+=======
+		
+>>>>>>> f14fa0491d040710c78e55b2f204160a5dc306de
     }
 	
 	/**
@@ -67,6 +76,10 @@ public class RexRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+<<<<<<< HEAD
+=======
+   
+>>>>>>> f14fa0491d040710c78e55b2f204160a5dc306de
     }
     
     /**

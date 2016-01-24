@@ -18,7 +18,11 @@ public class DriveTrain extends Subsystem {
 	RobotDrive rexDrive;
 	CANTalon leftTalon, rightTalon;
 	
+<<<<<<< HEAD
     public AnalogInput ultrasonicSensor;
+=======
+	public AnalogInput ultrasonicSensor;
+>>>>>>> f14fa0491d040710c78e55b2f204160a5dc306de
 
 	// First, some Singleton housekeeping. Make sure there is only one.	
 	public static DriveTrain instance;
@@ -44,8 +48,13 @@ public class DriveTrain extends Subsystem {
     	leftTalon = new CANTalon(RobotMap.leftMotorCAN);
     	rightTalon = new CANTalon(RobotMap.rightMotorCAN);
     	rexDrive = new RobotDrive(leftTalon, rightTalon);
+<<<<<<< HEAD
 		
 		ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
+=======
+    	
+    	ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
+>>>>>>> f14fa0491d040710c78e55b2f204160a5dc306de
     }
     
     public void tankDrive(double leftY, double rightY) {

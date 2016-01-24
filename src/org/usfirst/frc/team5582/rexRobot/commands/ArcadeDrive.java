@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  *
@@ -23,11 +25,19 @@ public class ArcadeDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+<<<<<<< HEAD
     	driveTrain.arcadeDrive(OI.arcadeStick);
     	double voltage = driveTrain.ultrasonicSensor.getVoltage();
         double inches = (voltage/9.766)*1000-6;
         SmartDashboard.putNumber("raw ultrasonic range", voltage);
         SmartDashboard.putNumber("inches ultrasonic range", inches);
+=======
+    driveTrain.arcadeDrive(OI.arcadeStick);
+    double voltage = driveTrain.ultrasonicSensor.getVoltage();
+    double inches = (voltage/9.766)*1000-6;
+    SmartDashboard.putNumber("raw ultrasonic range", voltage);
+    SmartDashboard.putNumber("inches ultrasonic range", inches);
+>>>>>>> f14fa0491d040710c78e55b2f204160a5dc306de
     }
 
     // Make this return true when this Command no longer needs to run execute()
