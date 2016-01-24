@@ -1,7 +1,10 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team5582.rexRobot.OI;
+import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 
 /**
