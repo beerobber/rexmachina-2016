@@ -1,7 +1,11 @@
 package org.usfirst.frc.team5582.rexRobot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
+
+import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
+
 import edu.wpi.first.wpilibj.DriverStation;
 
 /**
@@ -9,7 +13,7 @@ import edu.wpi.first.wpilibj.DriverStation;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
+     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
@@ -30,6 +34,10 @@ public class OI {
     // Run the command while the button is being held down and interrupt it once
     // the button is released.
     // button.whileHeld(new ExampleCommand());
+	
+	 // Detects when followButton is pressed and activates FollowObject
+    
+	
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
@@ -38,6 +46,8 @@ public class OI {
 	public static Joystick tankLeftStick;
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
+	public static Button followButton;
+	
 	
 	public static void init()
 	{
@@ -49,6 +59,11 @@ public class OI {
 		
 		// Just a convenience reference
 		arcadeStick = tankLeftStick;
+		
+		// Buttons
+		followButton = new JoystickButton(arcadeStick, 6);
+		followButton.whileHeld(new ErikFollowObject());
+			
 	}
 
     public static double getArcadeJoystickX()
