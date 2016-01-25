@@ -33,8 +33,8 @@ public class ErikFollowObject extends CommandBase {
          // Determine range of inches for object to be considered "followed"
          // so that the robot is still. 
          // (e.g. min-inches 24, max-inches 36)
-         int followMinimumInches = 24;
-         int followMaximumInches = 36;
+         int followMinimumInches = 12;
+         int followMaximumInches = 24;
          
          //sets variables for following direction to null
          Boolean followForward = false;
@@ -51,11 +51,11 @@ public class ErikFollowObject extends CommandBase {
          // Set drive train motors to intercept object
          if (followForward){
         	 // Setting the motors to move forwards
-        	 driveTrain.tankDrive(-0.25, 0.25);
+        	 driveTrain.tankDrive(-0.6, -0.6);
          }
          if (followBackward){
         	 //Setting the motors to move backwards
-        	 driveTrain.tankDrive(0.25, -0.25);
+        	 driveTrain.tankDrive(0.6, 0.6);
          }
     }
 
