@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
+ * 
+ * Branch by Erik H.
+ * 
  */
 public class RexRobot extends IterativeRobot {
 
@@ -31,7 +34,7 @@ public class RexRobot extends IterativeRobot {
     public void robotInit() {
 		CommandBase.init();
 		firstCommand = new ArcadeDrive();
-		ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
+		
     }
 	
 	/**
@@ -67,10 +70,7 @@ public class RexRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        double voltage = ultrasonicSensor.getVoltage();
-        double inches = (voltage/9.766)*1000-6;
-        SmartDashboard.putNumber("raw ultrasonic range", voltage);
-        SmartDashboard.putNumber("inches ultrasonic range", inches);
+   
     }
     
     /**
