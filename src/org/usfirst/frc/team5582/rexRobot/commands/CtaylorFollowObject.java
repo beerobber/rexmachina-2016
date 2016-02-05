@@ -1,36 +1,40 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team5582.rexRobot.OI;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  *
  */
-public class ArcadeDrive extends CommandBase {
+public class CtaylorFollowObject extends CommandBase {
 
-    public ArcadeDrive() {
+    public CtaylorFollowObject() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires((Subsystem) driveTrain);
+    	
+    	// We require exclusive use of the drive train
+    	requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
-    	driveTrain.arcadeDrive(OI.arcadeStick);
-    	double voltage = driveTrain.ultrasonicSensor.getVoltage();
+        double voltage = driveTrain.ultrasonicSensor.getVoltage();
         double inches = (voltage/9.766)*1000-6;
         SmartDashboard.putNumber("raw ultrasonic range", voltage);
         SmartDashboard.putNumber("inches ultrasonic range", inches);
+        
+        // Determine range of inches for object to be considered "followed"
+        // so that the robot is still. 
+        // (e.g. min-inches 24, max-inches 36)
+        
+        // Determine direction and speed to intercept object
+        
+        // Set drive train motors to intercept object
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -51,11 +51,11 @@ public class ErikFollowObject extends CommandBase {
          // Set drive train motors to intercept object
          if (followForward){
         	 // Setting the motors to move forwards
-        	 driveTrain.tankDrive(-0.5, -0.5);
+        	 driveTrain.tankDrive(-0.6, -0.6);
          }
          if (followBackward){
         	 //Setting the motors to move backwards
-        	 driveTrain.tankDrive(0.5, 0.5);
+        	 driveTrain.tankDrive(0.6, 0.6);
          }
     }
 
