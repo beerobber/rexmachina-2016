@@ -3,7 +3,6 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
