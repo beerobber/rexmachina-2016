@@ -11,7 +11,7 @@ public class ErikFollowObject extends CommandBase {
 
     public ErikFollowObject() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // eg. requires(chassis) ;
     	
     	//We require exclusive use of the drive train
     	requires(driveTrain);
