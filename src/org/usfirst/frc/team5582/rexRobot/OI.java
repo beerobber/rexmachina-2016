@@ -47,6 +47,8 @@ public class OI {
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
 	public static Button followButton;
+	public static Button shootBallButton;
+	public static Button getBallButton;
 	
 	
 	public static void init()
@@ -63,7 +65,16 @@ public class OI {
 		// Buttons
 		followButton = new JoystickButton(arcadeStick, 6);
 		followButton.whileHeld(new ErikFollowObject());
-			
+		
+		
+		
+		
+		
+		
+		//BALL SHOOT
+		//baller mechanism
+		shootBallButton = new JoystickButton(arcadeStick, 1);
+		getBallButton = new JoystickButton(arcadeStick, 4);
 	}
 
     public static double getArcadeJoystickX()

@@ -1,35 +1,20 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.RobotMap;
-import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 
 /**
  *
  */
-public abstract class CommandBase extends Command {
-	
-	public static OI oi;
-	
-	public static DriveTrain driveTrain;
-	
-	public static void init() {
-		driveTrain = DriveTrain.getInstance();
-		
-		oi = new OI();
-		oi.init();
-	}
+public class KatePushBall extends Command {
 
-    public CommandBase() {
-    	super();
+    public KatePushBall() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
+    	
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
