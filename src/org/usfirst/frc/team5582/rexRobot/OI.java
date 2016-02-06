@@ -3,10 +3,7 @@ package org.usfirst.frc.team5582.rexRobot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-
 import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
-
-
 import edu.wpi.first.wpilibj.DriverStation;
 
 
