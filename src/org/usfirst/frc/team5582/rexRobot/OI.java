@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
 
+
 import edu.wpi.first.wpilibj.DriverStation;
+
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,11 +34,18 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
     
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-	
-	 // Detects when followButton is pressed and activates FollowObject
+    public enum WheelArmState {
+    		DOWN("down"), UP("up"), STOP("stop");
+    		String state;
+    		
+    		private WheelArmState(String stateIn) {
+    			this.state = stateIn;
+    		}
+    		
+    		public String toString() {
+    			return "WheelArmState." + this.state;
+    		}
+    }
     
 	
     
@@ -47,6 +57,8 @@ public class OI {
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
 	public static Button followButton;
+	public static Button armsDownButton;
+	public static Button armsUpButton;
 	
 	
 	public static void init()
@@ -60,10 +72,28 @@ public class OI {
 		// Just a convenience reference
 		arcadeStick = tankLeftStick;
 		
-		// Buttons
+		// FOLLOW OBJECT
+		// Ultrasonic follow buttons
 		followButton = new JoystickButton(arcadeStick, 6);
 		followButton.whileHeld(new ErikFollowObject());
+		
+		// WHEEL ARMS
+		// buttons control snowblower motor using CANTalon at 75% power
+		armsDownButton = new JoystickButton(arcadeStick, 2);
+		armsUpButton = new JoystickButton(arcadeStick, 3);
+
+		
 			
+	}
+	
+	public static WheelArmState getWheelArmState() {
+		if (armsDownButton.get()) {
+			return WheelArmState.DOWN;
+		} else if (armsUpButton.get()) {
+			return WheelArmState.UP;
+		} else {
+			return WheelArmState.STOP;
+		}
 	}
 
     public static double getArcadeJoystickX()
