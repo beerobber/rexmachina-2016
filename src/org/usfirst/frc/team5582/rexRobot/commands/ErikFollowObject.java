@@ -1,7 +1,5 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**

@@ -48,6 +48,10 @@ public class BottomLift extends Subsystem {
 		bottomLiftMotorLeft = new CANTalon(RobotMap.bottomLiftMotor);
 		
 		}
+	
+	public double getBottomLiftTilt(){
+		return accel.getY();
+	}
 
 	}
 	

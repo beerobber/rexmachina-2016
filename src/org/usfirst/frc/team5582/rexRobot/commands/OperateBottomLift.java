@@ -1,43 +1,33 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.RobotMap;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
-import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 
 /**
  *
  */
-public abstract class CommandBase extends Command {
-	
-	public static OI oi;
-	
-	public static DriveTrain driveTrain;
-	
-	public static BottomLift bottomLift;
-	
-	public static void init() {
-		driveTrain = DriveTrain.getInstance();
-		bottomLift = BottomLift.getInstance();
-		
-		oi = new OI();
-		oi.init();
-	}
+public class OperateBottomLift extends CommandBase {
 
-    public CommandBase() {
-    	super();
+    public OperateBottomLift() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	
+    	//need the Bottom Lift and Winch
+    	requires(bottomLift);
+    	requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//getting tilt from bottom lift
+    	double bottomLiftTilt = bottomLift.getBottomLiftTilt(); 
+    	//TODO set up turn counter for winch encoder
+    	
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
