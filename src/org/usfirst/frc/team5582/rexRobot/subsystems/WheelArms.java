@@ -2,7 +2,8 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.commands.RotateArms;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 
 /**
@@ -10,8 +11,10 @@ import edu.wpi.first.wpilibj.CANTalon;
  */
 public class WheelArms extends Subsystem {
     
-	CANTalon wheelArmsTalon;
-	// TODO Need to declare an encoder
+	// The speed controller is a Spark, but it is used like a Talon
+	Spark wheelArmsTalon;
+	// String potentiometer declared for port zero
+	AnalogPotentiometer WheelArmsPot = new AnalogPotentiometer(0, 360, 30);
 	
 	// First, some Singleton housekeeping. Make sure there is only one.	
 		public static WheelArms instance;
