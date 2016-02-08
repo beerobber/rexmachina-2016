@@ -41,14 +41,11 @@ public class BottomLift extends Subsystem {
 		
 		// Mapping Accelerometer to its port and range (placeholder mode: +-2g mode)
 		accel = new ADXL345_I2C(I2C.Port.kOnboard, Accelerometer.Range.k4G);
-		// Getting tilt
-		double tiltY;
-		tiltY = accel.getY();
 		// set up the speed controller
 		bottomLiftMotorLeft = new CANTalon(RobotMap.bottomLiftMotor);
 		
 		}
-	
+	// Y Tilt Getter
 	public double getBottomLiftTilt(){
 		return accel.getY();
 	}

@@ -47,6 +47,8 @@ public class OI {
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
 	public static Button followButton;
+	public static Button bottomLiftUp;
+	public static Button bottomLiftDown;
 	
 	
 	public static void init()
@@ -63,6 +65,8 @@ public class OI {
 		// Buttons
 		followButton = new JoystickButton(arcadeStick, 6);
 		followButton.whileHeld(new ErikFollowObject());
+		bottomLiftUp.whileHeld()
+		
 			
 	}
 

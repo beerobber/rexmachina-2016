@@ -11,7 +11,7 @@ public class OperateBottomLift extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	
-    	//need the Bottom Lift and Winch
+    	//need the Bottom Lift, Winch, and Drive Train
     	requires(bottomLift);
     	requires(driveTrain);
     }
@@ -22,11 +22,10 @@ public class OperateBottomLift extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     	//getting tilt from bottom lift
     	double bottomLiftTilt = bottomLift.getBottomLiftTilt(); 
     	//TODO set up turn counter for winch encoder
-    	
-    	
     	
     }
 
