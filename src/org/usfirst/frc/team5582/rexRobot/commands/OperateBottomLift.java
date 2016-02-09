@@ -1,3 +1,5 @@
+//THIS CLASS STILL NEEDS WORK. MUST EXPERIMENT WITH VALUES GIVEN OFF BY WINCH AND ACCELEROMETER
+
 package org.usfirst.frc.team5582.rexRobot.commands;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
@@ -17,6 +19,7 @@ public class OperateBottomLift extends CommandBase {
     	//need the Bottom Lift, Winch, and Drive Train
     	requires(bottomLift);
     	requires(driveTrain);
+    	//TODO requires(winch);
     }
 
     // Called just before this Command runs the first time
@@ -34,14 +37,20 @@ public class OperateBottomLift extends CommandBase {
     	//possibly set state to false if button for other system is pressed
     	switch (state) {
     	case DOWN: {
+    		//TODO winch.down();
+    		
     		bottomLift.down();
     		break;
     	}
     	case UP: {
+    		//TODO winch.up();
+    		
     		bottomLift.up();
     		break;
     	}
     	case STOP: {
+    		//TODO winch.stop();
+    		
     		bottomLift.stop();
     		break;
     	}
@@ -64,5 +73,6 @@ public class OperateBottomLift extends CommandBase {
     protected void interrupted() {
     	//stops operation of lift if interupted
     	bottomLift.stop();
+    	//TODO winch.stop();
     }
 }
