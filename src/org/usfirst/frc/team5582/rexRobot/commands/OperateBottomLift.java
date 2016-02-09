@@ -3,6 +3,7 @@ package org.usfirst.frc.team5582.rexRobot.commands;
 import org.usfirst.frc.team5582.rexRobot.OI;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -45,6 +46,8 @@ public class OperateBottomLift extends CommandBase {
     		break;
     	}
     	}
+    	//places whatever the accelerometer currently gives off to SmartDash
+    	SmartDashboard.putNumber("BottomLiftTilt", bottomLift.getBottomLiftTilt());
     }
 
     // Make this return true when this Command no longer needs to run execute()
