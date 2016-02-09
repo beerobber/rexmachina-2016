@@ -40,9 +40,22 @@ public class OI {
     		}
     		
     		public String toString() {
-    			return "WheelArmState." + this.state;
+    			return "WheelArmState" + this.state;
     		}
     }
+    
+    public enum WinchState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private WinchState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "WheelArmState" + this.state;
+		}
+}
     
 	
     
@@ -54,8 +67,15 @@ public class OI {
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
 	public static Button followButton;
+	// wheel arms
 	public static Button armsDownButton;
 	public static Button armsUpButton;
+	// bottom lift
+	public static Button bottomLiftUp;
+	public static Button bottomLiftDown;
+	// winch motor
+	public static Button winchMotorUpButton;
+	public static Button winchMotorDownButton;
 	
 	
 	public static void init()
@@ -65,20 +85,19 @@ public class OI {
 		// Tank controls
 		tankLeftStick = new Joystick(0);
 		tankRightStick = new Joystick(1);
-		
 		// Just a convenience reference
 		arcadeStick = tankLeftStick;
-		
 		// FOLLOW OBJECT
 		// Ultrasonic follow buttons
 		followButton = new JoystickButton(arcadeStick, 6);
 		followButton.whileHeld(new ErikFollowObject());
-		
 		// WHEEL ARMS
 		// buttons control snowblower motor using CANTalon at 75% power
 		armsDownButton = new JoystickButton(arcadeStick, 2);
 		armsUpButton = new JoystickButton(arcadeStick, 3);
-
+		// WINCH Buttons
+		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
+		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
 		
 			
 	}
@@ -90,6 +109,16 @@ public class OI {
 			return WheelArmState.UP;
 		} else {
 			return WheelArmState.STOP;
+		}
+	}
+	
+	public static WinchState getWinchState() {
+		if (winchMotorDownButton.get()) {
+			return WinchState.DOWN;
+		} else if (winchMotorUpButton.get()) {
+			return WinchState.UP;
+		} else {
+			return WinchState.STOP;
 		}
 	}
 

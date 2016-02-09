@@ -6,10 +6,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.kauailabs.navx.frc.AHRS;
 
-/**
- *
- *
+
 public class NavX extends Subsystem {
+
 	
 	private AHRS ahrs;
 	

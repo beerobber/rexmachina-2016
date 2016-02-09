@@ -1,7 +1,5 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -11,7 +9,7 @@ public class ErikFollowObject extends CommandBase {
 
     public ErikFollowObject() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // eg. requires(chassis) ;
     	
     	//We require exclusive use of the drive train
     	requires(driveTrain);

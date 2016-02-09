@@ -1,49 +1,46 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.RobotMap;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
-import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
-import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
+import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
 
 /**
  *
  */
-public abstract class CommandBase extends Command {
-	
-	public static OI oi;
-	
-	public static DriveTrain driveTrain;
-	
-	public static WheelArms wheelArms;
-	
+public class OperateWinch extends Command {
 
-	public static BottomLift bottomLift;
+	Winch winch;
 	
-	public static void init() {
-		driveTrain = DriveTrain.getInstance();
-		bottomLift = BottomLift.getInstance();
-
-		
-		oi = new OI();
-		oi.init();
-		
-	}
-
-    public CommandBase() {
-    	super();
+    public OperateWinch() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    		requires(winch);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	OI.WinchState state = OI.getWinchState();
+		switch (state) {
+		case DOWN: {
+			winch.down();
+			break;
+		}
+		case UP: {
+			winch.up();
+			break;
+		}
+		case STOP: {
+			winch.stop();
+			break;
+		}
+		}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
