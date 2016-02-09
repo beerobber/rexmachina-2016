@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 public class BottomLift extends Subsystem {
    
 	Accelerometer accel;
-	CANTalon bottomLiftMotorLeft, bottomLiftMotorRight;
+	CANTalon bottomLiftMotor;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -38,17 +38,24 @@ public class BottomLift extends Subsystem {
 
 	protected BottomLift(){
 		// sets up sensors and motors for use
-		
 		// Mapping Accelerometer to its port and range (placeholder mode: +-2g mode)
 		accel = new ADXL345_I2C(I2C.Port.kOnboard, Accelerometer.Range.k4G);
 		// set up the speed controller
-		bottomLiftMotorLeft = new CANTalon(RobotMap.bottomLiftMotor);
+		bottomLiftMotor = new CANTalon(RobotMap.bottomLiftMotor);
 		
 		}
 	// Y Tilt Getter
 	public double getBottomLiftTilt(){
 		return accel.getY();
 	}
-
-	}
 	
+	public void down(){
+	bottomLiftMotor.set(-0.5);
+	}
+	public void up() {
+	bottomLiftMotor.set(0.5);
+	}
+	public void stop() {
+	bottomLiftMotor.set(0);
+	}
+}

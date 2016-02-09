@@ -37,11 +37,26 @@ public class OI {
 	
 	 // Detects when followButton is pressed and activates FollowObject
     
-	
-    
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
+	public enum BottomLiftState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private BottomLiftState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "BottomLiftState" + this.state;
+		}
+	}
+	
+	
+	
+	
 	public static DriverStation driverStation;
 	public static Joystick tankLeftStick;
 	public static Joystick tankRightStick;
@@ -65,9 +80,21 @@ public class OI {
 		// Buttons
 		followButton = new JoystickButton(arcadeStick, 6);
 		followButton.whileHeld(new ErikFollowObject());
-		bottomLiftUp.whileHeld()
+		bottomLiftUp = new JoystickButton(arcadeStick, ?);
+		bottomLiftDown = new JoystickButton(arcadeStick, ?);
 		
-			
+	}
+	
+	public static BottomLiftState getBottomLiftState(){
+		if (bottomLiftUp.get()) {
+			return BottomLiftState.UP;
+		}
+		else if (bottomLiftDown.get()) {
+			return BottomLiftState.DOWN;
+		}
+		else {
+			return BottomLiftState.STOP;
+		}
 	}
 
     public static double getArcadeJoystickX()
