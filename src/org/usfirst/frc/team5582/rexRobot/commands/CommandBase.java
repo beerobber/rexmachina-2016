@@ -21,6 +21,7 @@ public abstract class CommandBase extends Command {
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();
+		wheelArms = WheelArms.getInstance();
 		
 		oi = new OI();
 		oi.init();

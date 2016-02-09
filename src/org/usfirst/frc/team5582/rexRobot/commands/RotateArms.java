@@ -2,6 +2,7 @@ package org.usfirst.frc.team5582.rexRobot.commands;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -40,6 +41,9 @@ public class RotateArms extends CommandBase {
     			break;
     		}
     		}
+    		// This puts the position of the wheel arms on the screen
+    		SmartDashboard.putNumber("Wheel Arms Position", wheelArms.getWheelArmsPosition());
+    		System.out.format("Wheel Arms Position: %f", wheelArms.getWheelArmsPosition());
     	}
 
     // Make this return true when this Command no longer needs to run execute()
