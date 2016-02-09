@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
+import org.usfirst.frc.team5582.rexRobot.OI;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -27,6 +29,22 @@ public class OperateBottomLift extends CommandBase {
     	double bottomLiftTilt = bottomLift.getBottomLiftTilt(); 
     	//TODO set up turn counter for winch encoder
     	
+    	OI.BottomLiftState state = OI.getBottomLiftState();
+    	//possibly set state to false if button for other system is pressed
+    	switch (state) {
+    	case DOWN: {
+    		bottomLift.down();
+    		break;
+    	}
+    	case UP: {
+    		bottomLift.up();
+    		break;
+    	}
+    	case STOP: {
+    		bottomLift.stop();
+    		break;
+    	}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -41,5 +59,7 @@ public class OperateBottomLift extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	//stops operation of lift if interupted
+    	bottomLift.stop();
     }
 }
