@@ -52,6 +52,18 @@ public class OI {
 		public String toString() {
 			return "BottomLiftState" + this.state;
 		}
+		
+		public static BottomLiftState getBottomLiftState(){
+			if (bottomLiftUp.get()) {
+				return BottomLiftState.UP;
+			}
+			else if (bottomLiftDown.get()) {
+				return BottomLiftState.DOWN;
+			}
+			else {
+				return BottomLiftState.STOP;
+			}
+		}
 	}
 	
 	
@@ -85,17 +97,6 @@ public class OI {
 		
 	}
 	
-	public static BottomLiftState getBottomLiftState(){
-		if (bottomLiftUp.get()) {
-			return BottomLiftState.UP;
-		}
-		else if (bottomLiftDown.get()) {
-			return BottomLiftState.DOWN;
-		}
-		else {
-			return BottomLiftState.STOP;
-		}
-	}
 
     public static double getArcadeJoystickX()
     {
