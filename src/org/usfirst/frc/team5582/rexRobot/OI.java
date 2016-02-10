@@ -3,10 +3,10 @@ package org.usfirst.frc.team5582.rexRobot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-
 import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
-
 import edu.wpi.first.wpilibj.DriverStation;
+
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,17 +31,33 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
     
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-	
-	 // Detects when followButton is pressed and activates FollowObject
+    public enum WheelArmState {
+    		DOWN("down"), UP("up"), STOP("stop");
+    		String state;
+    		
+    		private WheelArmState(String stateIn) {
+    			this.state = stateIn;
+    		}
+    		
+    		public String toString() {
+    			return "WheelArmState" + this.state;
+    		}
+    }
     
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
-	
-	public enum BottomLiftState {
+    public enum WinchState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private WinchState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "WheelArmState" + this.state;
+		}
+}
+    
+    public enum BottomLiftState {
 		DOWN("down"), UP("up"), STOP("stop");
 		String state;
 		
@@ -52,19 +68,13 @@ public class OI {
 		public String toString() {
 			return "BottomLiftState" + this.state;
 		}
-		
-		public static BottomLiftState getBottomLiftState(){
-			if (bottomLiftUp.get()) {
-				return BottomLiftState.UP;
-			}
-			else if (bottomLiftDown.get()) {
-				return BottomLiftState.DOWN;
-			}
-			else {
-				return BottomLiftState.STOP;
-			}
-		}
-	}
+    }
+
+    
+    // Start the command when the button is released  and let it run the command
+    // until it is finished as determined by it's isFinished method.
+    // button.whenReleased(new ExampleCommand());
+	
 	
 	
 	
@@ -74,8 +84,15 @@ public class OI {
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
 	public static Button followButton;
+	// wheel arms
+	public static Button armsDownButton;
+	public static Button armsUpButton;
+	// bottom lift
 	public static Button bottomLiftUp;
 	public static Button bottomLiftDown;
+	// winch motor
+	public static Button winchMotorUpButton;
+	public static Button winchMotorDownButton;
 	
 	
 	public static void init()
@@ -85,18 +102,55 @@ public class OI {
 		// Tank controls
 		tankLeftStick = new Joystick(0);
 		tankRightStick = new Joystick(1);
-		
 		// Just a convenience reference
 		arcadeStick = tankLeftStick;
-		
-		// Buttons
+		// FOLLOW OBJECT
+		// Ultrasonic follow buttons
 		followButton = new JoystickButton(arcadeStick, 6);
 		followButton.whileHeld(new ErikFollowObject());
 		bottomLiftUp = new JoystickButton(arcadeStick, ?);
 		bottomLiftDown = new JoystickButton(arcadeStick, ?);
+		// WHEEL ARMS
+		// buttons control snowblower motor using CANTalon at 75% power
+		armsDownButton = new JoystickButton(arcadeStick, 2);
+		armsUpButton = new JoystickButton(arcadeStick, 3);
+		// WINCH Buttons
+		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
+		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
 		
 	}
 	
+	public static WheelArmState getWheelArmState() {
+		if (armsDownButton.get()) {
+			return WheelArmState.DOWN;
+		} else if (armsUpButton.get()) {
+			return WheelArmState.UP;
+		} else {
+			return WheelArmState.STOP;
+		}
+	}
+	
+	public static WinchState getWinchState() {
+		if (winchMotorDownButton.get()) {
+			return WinchState.DOWN;
+		} else if (winchMotorUpButton.get()) {
+			return WinchState.UP;
+		} else {
+			return WinchState.STOP;
+		}
+	}
+	
+	public static BottomLiftState getBottomLiftState(){
+		if (bottomLiftUp.get()) {
+			return BottomLiftState.UP;
+		}
+		else if (bottomLiftDown.get()) {
+			return BottomLiftState.DOWN;
+		}
+		else {
+			return BottomLiftState.STOP;
+		}
+	}
 
     public static double getArcadeJoystickX()
     {
@@ -108,4 +162,3 @@ public class OI {
       return arcadeStick.getY();
     }
 }
-

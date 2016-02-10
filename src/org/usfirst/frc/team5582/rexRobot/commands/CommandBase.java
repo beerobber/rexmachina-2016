@@ -7,6 +7,7 @@ import org.usfirst.frc.team5582.rexRobot.OI;
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
 import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
+import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
 
 /**
  *
@@ -17,14 +18,19 @@ public abstract class CommandBase extends Command {
 	
 	public static DriveTrain driveTrain;
 	
+	public static WheelArms wheelArms;
+	
+
 	public static BottomLift bottomLift;
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();
 		bottomLift = BottomLift.getInstance();
+
 		
 		oi = new OI();
 		oi.init();
+		
 	}
 
     public CommandBase() {
