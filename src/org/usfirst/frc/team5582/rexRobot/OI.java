@@ -53,7 +53,7 @@ public class OI {
 		}
 		
 		public String toString() {
-			return "WheelArmState" + this.state;
+			return "WinchState" + this.state;
 		}
 }
     
@@ -117,9 +117,8 @@ public class OI {
 		// WINCH Buttons
 		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
 		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
-		
-	}
-	
+	}	
+
 	public static WheelArmState getWheelArmState() {
 		if (armsDownButton.get()) {
 			return WheelArmState.DOWN;

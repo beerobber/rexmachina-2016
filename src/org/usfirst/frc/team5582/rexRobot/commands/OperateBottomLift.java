@@ -19,7 +19,7 @@ public class OperateBottomLift extends CommandBase {
     	//need the Bottom Lift, Winch, and Drive Train
     	requires(bottomLift);
     	requires(driveTrain);
-    	//TODO requires(winch);
+    	requires(winch);
     }
 
     // Called just before this Command runs the first time
@@ -33,30 +33,29 @@ public class OperateBottomLift extends CommandBase {
     	double bottomLiftTilt = bottomLift.getBottomLiftTilt(); 
     	//TODO set up turn counter for winch encoder
     	
+    	//TODO set up way of making corrections of winch/encoder according to accelerometer and encoder
+    	
     	OI.BottomLiftState state = OI.getBottomLiftState();
     	//possibly set state to false if button for other system is pressed
     	switch (state) {
     	case DOWN: {
-    		//TODO winch.down();
-    		
+    		winch.down();
     		bottomLift.down();
     		break;
     	}
     	case UP: {
-    		//TODO winch.up();
-    		
+    		winch.up();
     		bottomLift.up();
     		break;
     	}
-    	case STOP: {
-    		//TODO winch.stop();
-    		
+    	case STOP:  {
+    		winch.stop();	
     		bottomLift.stop();
     		break;
     	}
     	}
     	//places whatever the accelerometer currently gives off to SmartDash
-    	SmartDashboard.putNumber("BottomLiftTilt", bottomLift.getBottomLiftTilt());
+    	SmartDashboard.putNumber("BottomLiftTilt", bottomLiftTilt);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -73,6 +72,6 @@ public class OperateBottomLift extends CommandBase {
     protected void interrupted() {
     	//stops operation of lift if interupted
     	bottomLift.stop();
-    	//TODO winch.stop();
+    	winch.stop();
     }
 }

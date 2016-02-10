@@ -2,6 +2,7 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
+import org.usfirst.frc.team5582.rexRobot.commands.OperateBottomLift;
 
 import edu.wpi.first.wpilibj.ADXL345_I2C;
 import edu.wpi.first.wpilibj.I2C;
@@ -33,7 +34,7 @@ public class BottomLift extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new OperateBottomLift());
     }
 
 	protected BottomLift(){

@@ -8,6 +8,7 @@ import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
 import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
+import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
 
 /**
  *
@@ -20,6 +21,7 @@ public abstract class CommandBase extends Command {
 	
 	public static WheelArms wheelArms;
 	
+	public static Winch winch;
 
 	public static BottomLift bottomLift;
 	
