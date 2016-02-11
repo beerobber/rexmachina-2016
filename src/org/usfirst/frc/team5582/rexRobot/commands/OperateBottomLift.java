@@ -7,6 +7,7 @@ import org.usfirst.frc.team5582.rexRobot.OI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 /**
  *
  */
@@ -34,6 +35,7 @@ public class OperateBottomLift extends CommandBase {
     	//TODO set up turn counter for winch encoder
     	
     	//TODO set up way of making corrections of winch/encoder according to accelerometer and encoder
+    	
     	
     	OI.BottomLiftState state = OI.getBottomLiftState();
     	//possibly set state to false if button for other system is pressed

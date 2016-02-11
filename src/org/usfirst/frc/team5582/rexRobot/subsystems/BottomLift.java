@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
-import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
 import org.usfirst.frc.team5582.rexRobot.commands.OperateBottomLift;
 
 import edu.wpi.first.wpilibj.ADXL345_I2C;
@@ -16,8 +15,11 @@ import edu.wpi.first.wpilibj.CANTalon;
  */
 public class BottomLift extends Subsystem {
    
-	Accelerometer accel;
-	CANTalon bottomLiftMotor;
+	// sets up sensors and motors for use
+	// Mapping Accelerometer to its port and range (placeholder mode: +-2g mode)
+	Accelerometer accel = new ADXL345_I2C(I2C.Port.kOnboard, Accelerometer.Range.k4G);
+	CANTalon bottomLiftMotor = new CANTalon(RobotMap.bottomLiftMotor);
+	// set up the speed controller
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -35,16 +37,8 @@ public class BottomLift extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new OperateBottomLift());
-    }
+    }	
 
-	protected BottomLift(){
-		// sets up sensors and motors for use
-		// Mapping Accelerometer to its port and range (placeholder mode: +-2g mode)
-		accel = new ADXL345_I2C(I2C.Port.kOnboard, Accelerometer.Range.k4G);
-		// set up the speed controller
-		bottomLiftMotor = new CANTalon(RobotMap.bottomLiftMotor);
-		
-		}
 	// Y Tilt Getter
 	public double getBottomLiftTilt(){
 		return accel.getY();
