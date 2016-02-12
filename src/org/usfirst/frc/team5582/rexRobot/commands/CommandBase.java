@@ -9,6 +9,7 @@ import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
 import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
 import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
+import org.usfirst.frc.team5582.rexRobot.subsystems.ErikTopLift;
 
 /**
  *
@@ -24,6 +25,8 @@ public abstract class CommandBase extends Command {
 	public static Winch winch;
 
 	public static BottomLift bottomLift;
+	
+	public static ErikTopLift topLift;
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();

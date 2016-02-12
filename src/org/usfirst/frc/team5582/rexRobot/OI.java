@@ -69,7 +69,19 @@ public class OI {
 			return "BottomLiftState" + this.state;
 		}
     }
-
+    
+    public enum TopLiftState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private TopLiftState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "TopLiftState" + this.state;
+		}
+    }
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
@@ -90,6 +102,9 @@ public class OI {
 	// bottom lift
 	public static Button bottomLiftUp;
 	public static Button bottomLiftDown;
+	//top lift
+	public static Button topLiftUp;
+	public static Button topLiftDown;
 	// winch motor
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
@@ -108,8 +123,13 @@ public class OI {
 		// Ultrasonic follow buttons
 		followButton = new JoystickButton(arcadeStick, 6);
 		followButton.whileHeld(new ErikFollowObject());
+		// Bottom Lift Buttons
 		bottomLiftUp = new JoystickButton(arcadeStick, ?);
 		bottomLiftDown = new JoystickButton(arcadeStick, ?);
+		//Top Lift Buttons
+		topLiftUp = new JoystickButton(arcadeStick, ?);
+		topLiftDown = new JoystickButton(arcadeStick, ?);
+		
 		// WHEEL ARMS
 		// buttons control snowblower motor using CANTalon at 75% power
 		armsDownButton = new JoystickButton(arcadeStick, 2);
@@ -151,6 +171,18 @@ public class OI {
 		}
 	}
 
+	public static TopLiftState getTopLiftState(){
+		if (bottomLiftUp.get()) {
+			return TopLiftState.UP;
+		}
+		else if (bottomLiftDown.get()) {
+			return TopLiftState.DOWN;
+		}
+		else {
+			return TopLiftState.STOP;
+		}
+	}
+	
     public static double getArcadeJoystickX()
     {
       return arcadeStick.getX();

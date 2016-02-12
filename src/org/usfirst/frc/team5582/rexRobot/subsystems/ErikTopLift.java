@@ -9,14 +9,13 @@ import edu.wpi.first.wpilibj.CANTalon;
 public class ErikTopLift extends Subsystem {
     
 	CANTalon topLiftMotor;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    // encoder needs to be made here
 
-	public static BottomLift instance;
+	public static ErikTopLift instance;
 	
-	public static BottomLift getInstance() {
+	public static ErikTopLift getInstance() {
 		if (instance == null) {
-			instance = new BottomLift();
+			instance = new ErikTopLift();
 		}
 		return instance;
 	}
@@ -25,5 +24,15 @@ public class ErikTopLift extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    public void down(){
+    	topLiftMotor.set(-0.25);
+    }
+    public void up(){
+    	topLiftMotor.set(0.25);
+    }
+    public void stop() {
+    	topLiftMotor.set(0);
+    }
 }
+
 
