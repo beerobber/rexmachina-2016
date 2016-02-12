@@ -10,6 +10,7 @@ import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
 import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
 import org.usfirst.frc.team5582.rexRobot.subsystems.ErikTopLift;
+import org.usfirst.frc.team5582.rexRobot.subsystems.ErikBallSpinners;
 
 /**
  *
@@ -27,6 +28,8 @@ public abstract class CommandBase extends Command {
 	public static BottomLift bottomLift;
 	
 	public static ErikTopLift topLift;
+	
+	public static ErikBallSpinners ballSpinner; 
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();

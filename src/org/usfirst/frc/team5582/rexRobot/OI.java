@@ -83,6 +83,19 @@ public class OI {
 		}
     }
     
+    public enum BallSpinnerState {
+ 		OUT("out"), IN("in"), STOP("stop");
+ 		String state;
+ 		
+ 		private BallSpinnerState(String stateIn) {
+ 			this.state = stateIn;
+ 		}
+ 		
+ 		public String toString() {
+ 			return "BallLiftState" + this.state;
+ 		}
+     }
+    
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
@@ -108,6 +121,9 @@ public class OI {
 	// winch motor
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
+	//ball spinner
+	public static Button ballSpinnerOut;
+	public static Button ballSpinnerIn;
 	
 	
 	public static void init()
@@ -137,6 +153,9 @@ public class OI {
 		// WINCH Buttons
 		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
 		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
+		//Ball SPinner Buttons
+		ballSpinnerIn = new JoystickButton(arcadeStick, ?);
+		ballSpinnerOut = new JoystickButton(arcadeStick, ?);
 	}	
 
 	public static WheelArmState getWheelArmState() {
@@ -172,14 +191,26 @@ public class OI {
 	}
 
 	public static TopLiftState getTopLiftState(){
-		if (bottomLiftUp.get()) {
+		if (topLiftUp.get()) {
 			return TopLiftState.UP;
 		}
-		else if (bottomLiftDown.get()) {
+		else if (topLiftDown.get()) {
 			return TopLiftState.DOWN;
 		}
 		else {
 			return TopLiftState.STOP;
+		}
+	}
+	
+	public static BallSpinnerState getBallSpinnerState(){
+		if (ballSpinnerOut.get()) {
+			return BallSpinnerState.OUT;
+		}
+		else if (ballSpinnerIn.get()) {
+			return BallSpinnerState.IN;
+		}
+		else {
+			return BallSpinnerState.STOP;
 		}
 	}
 	
