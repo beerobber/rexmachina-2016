@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
+import org.usfirst.frc.team5582.rexRobot.commands.Pushball;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
@@ -53,10 +54,22 @@ public class OI {
 		}
 		
 		public String toString() {
-			return "WheelArmState" + this.state;
+			return "WinchState" + this.state;
 		}
 }
-    
+   
+    public enum BallpusherState {
+		OUT("out"), IN("in");
+		String state;
+		
+		private BallpusherState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "BallpusherState" + this.state;
+		}
+}
 	
     
     // Start the command when the button is released  and let it run the command
@@ -76,7 +89,7 @@ public class OI {
 	// winch motor
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
-	
+	public static Button ballpusherButton;
 	
 	public static void init()
 	{
@@ -98,7 +111,8 @@ public class OI {
 		// WINCH Buttons
 		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
 		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
-		
+		ballpusherButton = new JoystickButton(arcadeStick, 1);
+		ballpusherButton.whenPressed(new Pushball());
 			
 	}
 	
@@ -119,6 +133,14 @@ public class OI {
 			return WinchState.UP;
 		} else {
 			return WinchState.STOP;
+		}
+	}
+	
+	public static boolean pushball() {
+		if (ballpusherButton.get()) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
