@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.CANTalon;
  *
  */
 
-public class BallManipulator extends Subsystem {
+public class BallWheels extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -19,13 +19,13 @@ public class BallManipulator extends Subsystem {
 		CANTalon ballWheelLeft;
 		CANTalon ballWheelRight;
 		// First, some Singleton housekeeping. Make sure there is only one.	
-				public static DriveTrain instance;
+				public static BallWheels instance;
 				
-				public static DriveTrain getInstance() {
+				public static BallWheels getInstance() {
 					
 					// Only instantiate if no prior instance exists
 					if (instance == null) {
-						instance = new DriveTrain(); 
+						instance = new BallWheels(); 
 					}
 					return instance;
 				}

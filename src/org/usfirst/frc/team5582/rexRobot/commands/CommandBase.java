@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5582.rexRobot.OI;
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
+import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
 
 /**
  *
@@ -16,11 +17,14 @@ public abstract class CommandBase extends Command {
 	
 	public static DriveTrain driveTrain;
 	
+	public static WheelArms wheelArms;
+	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();
 		
 		oi = new OI();
 		oi.init();
+		
 	}
 
     public CommandBase() {
