@@ -3,7 +3,7 @@ package org.usfirst.frc.team5582.rexRobot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
+// import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
@@ -31,6 +31,7 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenPressed(new ExampleCommand());
     
+	// WHEEL ARMS STATE
     public enum WheelArmState {
     		DOWN("down"), UP("up"), STOP("stop");
     		String state;
@@ -43,7 +44,7 @@ public class OI {
     			return "WheelArmState" + this.state;
     		}
     }
-    
+    // WINCH STATE
     public enum WinchState {
 		DOWN("down"), UP("up"), STOP("stop");
 		String state;
@@ -56,7 +57,7 @@ public class OI {
 			return "Winch State" + this.state;
 		}
 }
-    
+    // BALL ARMS STATE
     public enum BallArmsState {
 		DOWN("down"), UP("up"), STOP("stop");
 		String state;
@@ -69,12 +70,54 @@ public class OI {
 			return "Ball Arm State" + this.state;
 		}
 }
-    
-	
+    // BOTTOM LIFT STATE
+    public enum BottomLiftState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private BottomLiftState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "BottomLiftState" + this.state;
+		}
+    }
+    // TOP LIFT STATE
+    public enum TopLiftState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private TopLiftState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "TopLiftState" + this.state;
+		}
+    }
+    // BALL SPINNER STATE
+    public enum BallSpinnerState {
+ 		OUT("out"), IN("in"), STOP("stop");
+ 		String state;
+ 		
+ 		private BallSpinnerState(String stateIn) {
+ 			this.state = stateIn;
+ 		}
+ 		
+ 		public String toString() {
+ 			return "BallLiftState" + this.state;
+ 		}
+     }
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
+	
+	
+	
+	
 	public static DriverStation driverStation;
 	public static Joystick tankLeftStick;
 	public static Joystick tankRightStick;
@@ -86,12 +129,18 @@ public class OI {
 	// bottom lift
 	public static Button bottomLiftUp;
 	public static Button bottomLiftDown;
+	//top lift
+	public static Button topLiftUp;
+	public static Button topLiftDown;
 	// winch motor
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
 	// Ball Arm Buttons
 	public static Button ballArmIn;
 	public static Button ballArmOut;
+	//ball spinner
+	public static Button ballSpinnerOut;
+	public static Button ballSpinnerIn;
 	
 	
 	public static void init()
@@ -105,8 +154,15 @@ public class OI {
 		arcadeStick = tankLeftStick;
 		// FOLLOW OBJECT
 		// Ultrasonic follow buttons
-		followButton = new JoystickButton(arcadeStick, 6);
-		followButton.whileHeld(new ErikFollowObject());
+		// followButton = new JoystickButton(arcadeStick, 6);
+		// followButton.whileHeld(new ErikFollowObject());
+		// Bottom Lift Buttons
+		bottomLiftUp = new JoystickButton(arcadeStick, 6);
+		bottomLiftDown = new JoystickButton(arcadeStick, 7);
+		//Top Lift Buttons
+		topLiftUp = new JoystickButton(arcadeStick, 8);
+		topLiftDown = new JoystickButton(arcadeStick, 9);
+		
 		// WHEEL ARMS
 		// buttons control snowblower motor using CANTalon at 75% power
 		armsDownButton = new JoystickButton(arcadeStick, 2);
@@ -117,9 +173,12 @@ public class OI {
 		//BALL ARM Buttons
 		ballArmIn = new JoystickButton(arcadeStick, 8);
 		ballArmOut = new JoystickButton(arcadeStick, 9);
-		
+		//Ball Spinner Buttons
+		ballSpinnerIn = new JoystickButton(arcadeStick, 4);
+		ballSpinnerOut = new JoystickButton(arcadeStick, 5);
 			
-	}
+	}	
+	// WHEEL ARMS STATE
 	public static WheelArmState getWheelArmState() {
 		if (armsDownButton.get()) {
 			return WheelArmState.DOWN;
@@ -129,6 +188,7 @@ public class OI {
 			return WheelArmState.STOP;
 		}
 	}
+	// WINCH STATE
 	public static WinchState getWinchState() {
 		if (winchMotorDownButton.get()) {
 			return WinchState.DOWN;
@@ -138,6 +198,7 @@ public class OI {
 			return WinchState.STOP;
 		}
 	}
+	// BALL ARMS STATE
 	public static BallArmsState getBallArmsState() {
 		if (ballArmIn.get()) {
 			return BallArmsState.DOWN;
@@ -147,7 +208,43 @@ public class OI {
 			return BallArmsState.STOP;
 		}
 	}
-
+	// BOTTOM LIFT STATE
+	public static BottomLiftState getBottomLiftState(){
+		if (bottomLiftUp.get()) {
+			return BottomLiftState.UP;
+		}
+		else if (bottomLiftDown.get()) {
+			return BottomLiftState.DOWN;
+		}
+		else {
+			return BottomLiftState.STOP;
+		}
+	}
+	// TOP LIFT STATE
+	public static TopLiftState getTopLiftState(){
+		if (topLiftUp.get()) {
+			return TopLiftState.UP;
+		}
+		else if (topLiftDown.get()) {
+			return TopLiftState.DOWN;
+		}
+		else {
+			return TopLiftState.STOP;
+		}
+	}
+	// BALL SPINNER STATE
+	public static BallSpinnerState getBallSpinnerState(){
+		if (ballSpinnerOut.get()) {
+			return BallSpinnerState.OUT;
+		}
+		else if (ballSpinnerIn.get()) {
+			return BallSpinnerState.IN;
+		}
+		else {
+			return BallSpinnerState.STOP;
+		}
+	}
+	
     public static double getArcadeJoystickX()
     {
       return arcadeStick.getX();
@@ -158,4 +255,3 @@ public class OI {
       return arcadeStick.getY();
     }
 }
-
