@@ -2,15 +2,11 @@
 package org.usfirst.frc.team5582.rexRobot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
 import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
-import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the

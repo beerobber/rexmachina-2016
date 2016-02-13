@@ -26,7 +26,7 @@ public class Winch extends Subsystem {
 			return instance;
 	}
 
-    public void initDefaultCommand() {
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new OperateWinch());
     	
@@ -36,7 +36,7 @@ public class Winch extends Subsystem {
 		winch.set(-0.75);
     }
     public void up() {
-		winch.set(0.75);
+    		winch.set(0.75);
     }
     public void stop() {
     		winch.set(0);

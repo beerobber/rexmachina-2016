@@ -1,13 +1,17 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.command.Command;
 
+import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5582.rexRobot.subsystems.AirCompressor;
 import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
 import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
+import org.usfirst.frc.team5582.rexRobot.subsystems.BallArms;
+import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
+import org.usfirst.frc.team5582.rexRobot.subsystems.ErikTopLift;
+import org.usfirst.frc.team5582.rexRobot.subsystems.ErikBallSpinners;
+
 
 /**
  *
@@ -15,19 +19,21 @@ import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
 public abstract class CommandBase extends Command {
 	
 	public static OI oi;
-	
+	public static AirCompressor airCompressor;
 	public static DriveTrain driveTrain;
-	
 	public static WheelArms wheelArms;
-	
-
+	public static Winch winch;
 	public static BottomLift bottomLift;
+	public static BallArms ballArms;
+	public static ErikTopLift topLift;
+	public static ErikBallSpinners ballSpinner; 
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();
 		bottomLift = BottomLift.getInstance();
-
-		
+		wheelArms = WheelArms.getInstance();
+		airCompressor = AirCompressor.getInstance();
+		ballArms = BallArms.getInstance();
 		oi = new OI();
 		oi.init();
 		
