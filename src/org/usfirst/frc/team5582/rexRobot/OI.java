@@ -53,7 +53,20 @@ public class OI {
 		}
 		
 		public String toString() {
-			return "WheelArmState" + this.state;
+			return "Winch State" + this.state;
+		}
+}
+    
+    public enum BallArmsState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private BallArmsState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "Ball Arm State" + this.state;
 		}
 }
     
@@ -76,6 +89,9 @@ public class OI {
 	// winch motor
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
+	// Ball Arm Buttons
+	public static Button ballArmIn;
+	public static Button ballArmOut;
 	
 	
 	public static void init()
@@ -98,10 +114,12 @@ public class OI {
 		// WINCH Buttons
 		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
 		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
+		//BALL ARM Buttons
+		ballArmIn = new JoystickButton(arcadeStick, 8);
+		ballArmOut = new JoystickButton(arcadeStick, 9);
 		
 			
 	}
-	
 	public static WheelArmState getWheelArmState() {
 		if (armsDownButton.get()) {
 			return WheelArmState.DOWN;
@@ -111,7 +129,6 @@ public class OI {
 			return WheelArmState.STOP;
 		}
 	}
-	
 	public static WinchState getWinchState() {
 		if (winchMotorDownButton.get()) {
 			return WinchState.DOWN;
@@ -119,6 +136,15 @@ public class OI {
 			return WinchState.UP;
 		} else {
 			return WinchState.STOP;
+		}
+	}
+	public static BallArmsState getBallArmsState() {
+		if (ballArmIn.get()) {
+			return BallArmsState.DOWN;
+		} else if (ballArmOut.get()) {
+			return BallArmsState.UP;
+		} else {
+			return BallArmsState.STOP;
 		}
 	}
 
