@@ -1,18 +1,21 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team5582.rexRobot.OI;
+import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
 
 /**
  *
  */
-public class ArcadeDrive extends CommandBase {
+public class OperateWinch extends Command {
 
-    public ArcadeDrive() {
+	Winch winch;
+	
+    public OperateWinch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires((Subsystem) driveTrain);
+    		requires(winch);
     }
 
     // Called just before this Command runs the first time
@@ -21,12 +24,23 @@ public class ArcadeDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
-    	driveTrain.arcadeDrive(OI.arcadeStick);
-    	double voltage = driveTrain.ultrasonicSensor.getVoltage();
-        double inches = (voltage/9.766)*1000-6;
-        SmartDashboard.putNumber("raw ultrasonic range", voltage);
-        SmartDashboard.putNumber("inches ultrasonic range", inches);
+    	
+    	OI.WinchState state = OI.getWinchState();
+		switch (state) {
+		case DOWN: {
+			winch.down();
+			break;
+		}
+		case UP: {
+			winch.up();
+			break;
+		}
+		case STOP: {
+			winch.stop();
+			break;
+		}
+		}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
