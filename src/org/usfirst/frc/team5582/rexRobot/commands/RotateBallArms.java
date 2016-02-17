@@ -1,21 +1,22 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+
 
 import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BallArms;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class RotateBallArms extends Command {
+public class RotateBallArms extends CommandBase {
 
-	BallArms ballArms;
 	
     public RotateBallArms() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     		requires(ballArms);
+        SmartDashboard.putData(this);
     }
 
     // Called just before this Command runs the first time

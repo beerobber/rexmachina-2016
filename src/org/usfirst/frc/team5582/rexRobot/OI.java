@@ -13,35 +13,18 @@ import edu.wpi.first.wpilibj.DriverStation;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-     //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
+
     
 	// WHEEL ARMS STATE
-    public enum WheelArmState {
+    public enum WheelArmsState {
     		DOWN("down"), UP("up"), STOP("stop");
     		String state;
     		
-    		private WheelArmState(String stateIn) {
+    		private WheelArmsState(String stateIn) {
     			this.state = stateIn;
     		}
-    		
     		public String toString() {
-    			return "WheelArmState" + this.state;
+    			return "WheelArmsState" + this.state;
     		}
     }
     // WINCH STATE
@@ -52,9 +35,8 @@ public class OI {
 		private WinchState(String stateIn) {
 			this.state = stateIn;
 		}
-		
 		public String toString() {
-			return "Winch State" + this.state;
+			return "WinchState" + this.state;
 		}
 }
     // BALL ARMS STATE
@@ -78,7 +60,6 @@ public class OI {
 		private BottomLiftState(String stateIn) {
 			this.state = stateIn;
 		}
-		
 		public String toString() {
 			return "BottomLiftState" + this.state;
 		}
@@ -113,10 +94,6 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-	
-	
-	
-	
 	
 	public static DriverStation driverStation;
 	public static Joystick tankLeftStick;
@@ -162,9 +139,7 @@ public class OI {
 		//Top Lift Buttons
 		topLiftUp = new JoystickButton(arcadeStick, 8);
 		topLiftDown = new JoystickButton(arcadeStick, 9);
-		
 		// WHEEL ARMS
-		// buttons control snowblower motor using CANTalon at 75% power
 		armsDownButton = new JoystickButton(arcadeStick, 2);
 		armsUpButton = new JoystickButton(arcadeStick, 3);
 		// WINCH Buttons
@@ -179,13 +154,13 @@ public class OI {
 			
 	}	
 	// WHEEL ARMS STATE
-	public static WheelArmState getWheelArmState() {
+	public static WheelArmsState getWheelArmsState() {
 		if (armsDownButton.get()) {
-			return WheelArmState.DOWN;
+			return WheelArmsState.DOWN;
 		} else if (armsUpButton.get()) {
-			return WheelArmState.UP;
+			return WheelArmsState.UP;
 		} else {
-			return WheelArmState.STOP;
+			return WheelArmsState.STOP;
 		}
 	}
 	// WINCH STATE

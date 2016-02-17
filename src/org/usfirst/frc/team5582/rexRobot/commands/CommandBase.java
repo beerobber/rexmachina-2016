@@ -2,6 +2,9 @@ package org.usfirst.frc.team5582.rexRobot.commands;
 
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+
 import org.usfirst.frc.team5582.rexRobot.subsystems.AirCompressor;
 import org.usfirst.frc.team5582.rexRobot.OI;
 import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
@@ -34,13 +37,13 @@ public abstract class CommandBase extends Command {
 		wheelArms = WheelArms.getInstance();
 		airCompressor = AirCompressor.getInstance();
 		ballArms = BallArms.getInstance();
+		winch = Winch.getInstance();
 		oi = new OI();
 		oi.init();
-		
 	}
 
     public CommandBase() {
-    	super();
+    		super();
     }
 
     // Called just before this Command runs the first time
