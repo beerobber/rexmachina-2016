@@ -3,6 +3,9 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.CANTalon;
 
+import org.usfirst.frc.team5582.rexRobot.RobotMap;
+import org.usfirst.frc.team5582.rexRobot.commands.ErikOperateTopLift;
+
 /**
  *
  */
@@ -20,15 +23,18 @@ public class ErikTopLift extends Subsystem {
 		return instance;
 	}
 	
+	protected ErikTopLift() {
+		topLiftMotor = new CANTalon(RobotMap.topLiftMotor);
+	}
+	
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new ErikOperateTopLift());
     }
     public void down(){
-    	topLiftMotor.set(-0.25);
+    	topLiftMotor.set(-0.3);
     }
     public void up(){
-    	topLiftMotor.set(0.25);
+    	topLiftMotor.set(1);
     }
     public void stop() {
     	topLiftMotor.set(0);

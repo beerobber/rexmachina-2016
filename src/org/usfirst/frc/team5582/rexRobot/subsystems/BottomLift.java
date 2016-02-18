@@ -50,8 +50,8 @@ public class BottomLift extends Subsystem {
 	bottomLiftMotorB.set(-0.3);
 	}
 	public void up() {
-		bottomLiftMotorA.set(-0.3);
-		bottomLiftMotorB.set(0.3);
+		bottomLiftMotorA.set(-1);
+		bottomLiftMotorB.set(1);
 	}
 	public void stop() {
 		bottomLiftMotorA.set(0);

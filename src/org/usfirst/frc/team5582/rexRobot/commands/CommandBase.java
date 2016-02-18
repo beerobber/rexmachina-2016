@@ -34,6 +34,7 @@ public abstract class CommandBase extends Command {
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();
 		bottomLift = BottomLift.getInstance();
+		topLift = topLift.getInstance();
 		wheelArms = WheelArms.getInstance();
 		airCompressor = AirCompressor.getInstance();
 		ballArms = BallArms.getInstance();

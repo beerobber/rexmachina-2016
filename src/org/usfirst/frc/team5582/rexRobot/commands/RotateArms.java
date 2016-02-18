@@ -18,6 +18,7 @@ public class RotateArms extends CommandBase {
     protected void initialize() {
 		SmartDashboard.putData(this);
 		SmartDashboard.putString("RotateArms init", "here");
+		wheelArms.initializeLimitCounter();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,10 +28,15 @@ public class RotateArms extends CommandBase {
     		switch (state) {
     		case DOWN: {
     			wheelArms.down();
+    			wheelArms.initializeLimitCounter();
     			break;
     		}
     		case UP: {
-    			wheelArms.up();
+    			if (!wheelArms.isLimitSwitchTripped()) {
+        			wheelArms.up();    				
+    			} else {
+    				wheelArms.stop();
+    			}
     			break;
     		}
     		case STOP: {
