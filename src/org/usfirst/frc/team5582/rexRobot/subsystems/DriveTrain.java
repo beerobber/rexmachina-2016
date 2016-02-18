@@ -42,10 +42,6 @@ public class DriveTrain extends Subsystem {
     		leftTalonB = new CANTalon(RobotMap.leftMotorCANB);
     		rightTalonA = new CANTalon(RobotMap.rightMotorCANA);
     		rightTalonB = new CANTalon(RobotMap.rightMotorCANB);
-    		double powerLeftA = leftTalonA.get();
-    		double powerLeftB = leftTalonB.get();
-    		double powerRightA = rightTalonA.get();
-    		double powerRightB = rightTalonB.get();
     		rexDrive = new RobotDrive(leftTalonB, leftTalonA, rightTalonB, rightTalonA);
 		
 		ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
@@ -60,15 +56,15 @@ public class DriveTrain extends Subsystem {
     }
     
     public void turboDrive() {
-    		/*double powerLeftA = leftTalonA.get();
-		double powerLeftB = leftTalonB.get();
-		double powerRightA = rightTalonA.get();
-		double powerRightB = rightTalonB.get();
-		*/
-    		leftTalonA.set(1.2);
-    		leftTalonB.set(1.2);
-    		rightTalonA.set(1.2);
-    		rightTalonB.set(1.2);
+    		double turboLeftTalonA = leftTalonA.get();
+    		double turboLeftTalonB = leftTalonA.get();
+    		double turboRightTalonA = leftTalonA.get();
+    		double turboRightTalonB = leftTalonA.get();
+    		leftTalonA.set(turboLeftTalonA*1.2);
+    		leftTalonB.set(turboLeftTalonB*1.2);
+    		rightTalonA.set(turboRightTalonA*1.2);
+    		rightTalonB.set(turboRightTalonB*1.2);
+    		
     }
     
 }
