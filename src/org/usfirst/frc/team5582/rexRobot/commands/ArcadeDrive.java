@@ -21,6 +21,16 @@ public class ArcadeDrive extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     		driveTrain.arcadeDrive(OI.arcadeStick);
+    		OI.TurboState state = OI.getTurboState();
+    		switch (state) {
+    			case PRESSED: {
+    				driveTrain.turboDrive();
+    				break;
+    			}
+    			case NOTPRESSED: {
+    				break;
+    			}
+    		}
     		double voltage = driveTrain.ultrasonicSensor.getVoltage();
         double inches = (voltage/9.766)*1000-6;
         //SmartDashboard.putNumber("raw ultrasonic range", voltage);

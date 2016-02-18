@@ -90,6 +90,19 @@ public class OI {
  			return "BallLiftState" + this.state;
  		}
      }
+    // TURBO STATE
+    public enum TurboState {
+ 		PRESSED("pressed"), NOTPRESSED("Not pressed");
+ 		String state;
+ 		
+ 		private TurboState(String stateIn) {
+ 			this.state = stateIn;
+ 		}
+ 		
+ 		public String toString() {
+ 			return "TurboState" + this.state;
+ 		}
+     }
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
@@ -118,6 +131,8 @@ public class OI {
 	//ball spinner
 	public static Button ballSpinnerOut;
 	public static Button ballSpinnerIn;
+	// Turbo Drive
+	public static Button turboDrive;
 	
 	
 	public static void init()
@@ -151,6 +166,8 @@ public class OI {
 		//Ball Spinner Buttons
 		ballSpinnerIn = new JoystickButton(arcadeStick, 4);
 		ballSpinnerOut = new JoystickButton(arcadeStick, 5);
+		// TURBO DRIVE
+		turboDrive = new JoystickButton(arcadeStick, 1);
 			
 	}	
 	// WHEEL ARMS STATE
@@ -219,6 +236,14 @@ public class OI {
 			return BallSpinnerState.STOP;
 		}
 	}
+	// TURBO STATE
+		public static TurboState getTurboState(){
+			if (turboDrive.get()) {
+				return TurboState.PRESSED;
+			} else {
+				return TurboState.NOTPRESSED;
+			}
+		}
 	
     public static double getArcadeJoystickX()
     {

@@ -3,7 +3,6 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -43,7 +42,11 @@ public class DriveTrain extends Subsystem {
     		leftTalonB = new CANTalon(RobotMap.leftMotorCANB);
     		rightTalonA = new CANTalon(RobotMap.rightMotorCANA);
     		rightTalonB = new CANTalon(RobotMap.rightMotorCANB);
-    		rexDrive = new RobotDrive(leftTalonA, leftTalonB, rightTalonA, rightTalonB);
+    		double powerLeftA = leftTalonA.get();
+    		double powerLeftB = leftTalonB.get();
+    		double powerRightA = rightTalonA.get();
+    		double powerRightB = rightTalonB.get();
+    		rexDrive = new RobotDrive(leftTalonB, leftTalonA, rightTalonB, rightTalonA);
 		
 		ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
     }
@@ -54,6 +57,18 @@ public class DriveTrain extends Subsystem {
     
     public void arcadeDrive(Joystick stick) {
     		rexDrive.arcadeDrive(stick);
+    }
+    
+    public void turboDrive() {
+    		/*double powerLeftA = leftTalonA.get();
+		double powerLeftB = leftTalonB.get();
+		double powerRightA = rightTalonA.get();
+		double powerRightB = rightTalonB.get();
+		*/
+    		leftTalonA.set(1.2);
+    		leftTalonB.set(1.2);
+    		rightTalonA.set(1.2);
+    		rightTalonB.set(1.2);
     }
     
 }
