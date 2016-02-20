@@ -19,8 +19,8 @@ public class WheelArms extends Subsystem {
 	Spark myWheelArms;
 	// String potentiometer
 	AnalogPotentiometer wheelArmsPot;
-	DigitalInput wheelArmsLimitSwitch;
-	Counter limitSwitchCounter;
+	//DigitalInput wheelArmsLimitSwitch;
+	//Counter limitSwitchCounter;
 	
 	// First, some Singleton housekeeping. Make sure there is only one.	
 	public static WheelArms instance;
@@ -39,10 +39,11 @@ public class WheelArms extends Subsystem {
     protected WheelArms() {
 		myWheelArms = new Spark(RobotMap.wheelArms);
 		wheelArmsPot = new AnalogPotentiometer(0, 360, 30);
-		wheelArmsLimitSwitch = new DigitalInput(9);
-		limitSwitchCounter = new Counter(wheelArmsLimitSwitch);
+		//wheelArmsLimitSwitch = new DigitalInput(9);
+		//limitSwitchCounter = new Counter(wheelArmsLimitSwitch);
     }
     
+    /*
     public boolean isLimitSwitchTripped() {
     		SmartDashboard.putNumber("limitSwitchCounter", limitSwitchCounter.get());
     		return limitSwitchCounter.get() > 0;
@@ -51,6 +52,7 @@ public class WheelArms extends Subsystem {
     public void initializeLimitCounter() {
     		limitSwitchCounter.reset();
     }
+    */
 	
     public void initDefaultCommand() {
         setDefaultCommand(new RotateArms());
@@ -60,11 +62,14 @@ public class WheelArms extends Subsystem {
     		SmartDashboard.putString("WheelArms motion", "down");
     }
     public void up() {
+    		myWheelArms.set(0.5);
+    		/*
     		if (!wheelArmsLimitSwitch.get()) {
     			myWheelArms.set(0);
     		} else {
         		myWheelArms.set(0.5);    			
     		}
+    		*/
     		SmartDashboard.putString("WheelArms motion", "up");
     }
     public void stop() {

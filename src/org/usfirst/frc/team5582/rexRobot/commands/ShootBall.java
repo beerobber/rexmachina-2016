@@ -1,15 +1,13 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import org.usfirst.frc.team5582.rexRobot.OI;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ErikOperateBallSpinners extends CommandBase {
+public class ShootBall extends Command {
 
-    public ErikOperateBallSpinners() {
+    public ShootBall() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,24 +18,6 @@ public class ErikOperateBallSpinners extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	OI.BallSpinnerState state = OI.getBallSpinnerState();
-    	//possibly set state to false if button for other system is pressed
-    	switch (state) {
-    	case IN: {
-    		ballSpinner.in();
-    		break;
-    	}
-    	case OUT: {
-    		ballSpinner.out();
-    		break;
-    	}
-    	case STOP:  {	
-    		ballSpinner.stop();
-    		break;
-    	}
-    	}
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

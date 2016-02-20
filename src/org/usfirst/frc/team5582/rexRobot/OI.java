@@ -3,7 +3,7 @@ package org.usfirst.frc.team5582.rexRobot;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
-// import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
+import org.usfirst.frc.team5582.rexRobot.commands.*;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
@@ -39,19 +39,7 @@ public class OI {
 			return "WinchState" + this.state;
 		}
 }
-    // BALL ARMS STATE
-    public enum BallArmsState {
-		DOWN("down"), UP("up"), STOP("stop");
-		String state;
-		
-		private BallArmsState(String stateIn) {
-			this.state = stateIn;
-		}
-		
-		public String toString() {
-			return "Ball Arm State" + this.state;
-		}
-}
+
     // BOTTOM LIFT STATE
     public enum BottomLiftState {
 		DOWN("down"), UP("up"), STOP("stop");
@@ -90,19 +78,6 @@ public class OI {
  			return "BallLiftState" + this.state;
  		}
      }
-    // TURBO STATE
-    public enum TurboState {
- 		PRESSED("pressed"), NOTPRESSED("Not pressed");
- 		String state;
- 		
- 		private TurboState(String stateIn) {
- 			this.state = stateIn;
- 		}
- 		
- 		public String toString() {
- 			return "TurboState" + this.state;
- 		}
-     }
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
@@ -126,13 +101,12 @@ public class OI {
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
 	// Ball Arm Buttons
-	public static Button ballArmIn;
-	public static Button ballArmOut;
+	public static Button ballGrab;
+	public static Button ballShoot;
+	public static Button armsLift;
 	//ball spinner
 	public static Button ballSpinnerOut;
 	public static Button ballSpinnerIn;
-	// Turbo Drive
-	public static Button turboDrive;
 	
 	
 	public static void init()
@@ -160,14 +134,16 @@ public class OI {
 		// WINCH Buttons
 		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
 		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
-		//BALL ARM Buttons
-		ballArmIn = new JoystickButton(arcadeStick, 8);
-		ballArmOut = new JoystickButton(arcadeStick, 9);
+		//BALL GRABBER Buttons
+		ballGrab = new JoystickButton(arcadeStick, 8);
+		armsLift = new JoystickButton(arcadeStick, 9);
+		ballShoot = new JoystickButton(arcadeStick, 1);
+		
+		ballGrab.whenPressed(new GrabBall());
+		
 		//Ball Spinner Buttons
 		ballSpinnerIn = new JoystickButton(arcadeStick, 4);
 		ballSpinnerOut = new JoystickButton(arcadeStick, 5);
-		// TURBO DRIVE
-		turboDrive = new JoystickButton(arcadeStick, 1);
 			
 	}	
 	// WHEEL ARMS STATE
@@ -190,16 +166,7 @@ public class OI {
 			return WinchState.STOP;
 		}
 	}
-	// BALL ARMS STATE
-	public static BallArmsState getBallArmsState() {
-		if (ballArmIn.get()) {
-			return BallArmsState.DOWN;
-		} else if (ballArmOut.get()) {
-			return BallArmsState.UP;
-		} else {
-			return BallArmsState.STOP;
-		}
-	}
+
 	// BOTTOM LIFT STATE
 	public static BottomLiftState getBottomLiftState(){
 		if (bottomLiftUp.get()) {
@@ -236,14 +203,6 @@ public class OI {
 			return BallSpinnerState.STOP;
 		}
 	}
-	// TURBO STATE
-		public static TurboState getTurboState(){
-			if (turboDrive.get()) {
-				return TurboState.PRESSED;
-			} else {
-				return TurboState.NOTPRESSED;
-			}
-		}
 	
     public static double getArcadeJoystickX()
     {

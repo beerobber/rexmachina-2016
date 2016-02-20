@@ -10,7 +10,7 @@ import org.usfirst.frc.team5582.rexRobot.OI;
 import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
 import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
 import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BallArms;
+import org.usfirst.frc.team5582.rexRobot.subsystems.BallGrabber;
 import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
 import org.usfirst.frc.team5582.rexRobot.subsystems.ErikTopLift;
 import org.usfirst.frc.team5582.rexRobot.subsystems.ErikBallSpinners;
@@ -27,17 +27,16 @@ public abstract class CommandBase extends Command {
 	public static WheelArms wheelArms;
 	public static Winch winch;
 	public static BottomLift bottomLift;
-	public static BallArms ballArms;
+	public static BallGrabber ballArms;
 	public static ErikTopLift topLift;
-	public static ErikBallSpinners ballSpinner; 
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();
 		bottomLift = BottomLift.getInstance();
-		topLift = topLift.getInstance();
+		topLift = ErikTopLift.getInstance();
 		wheelArms = WheelArms.getInstance();
 		airCompressor = AirCompressor.getInstance();
-		ballArms = BallArms.getInstance();
+		ballArms = BallGrabber.getInstance();
 		winch = Winch.getInstance();
 		oi = new OI();
 		oi.init();
