@@ -1,20 +1,17 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
+import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 
 /**
  *
  */
-public class OperateWinch extends Command {
+public class OperateWinch extends CommandBase {
 
-	Winch winch;
-	
     public OperateWinch() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    		requires(winch);
+    	requires(winch);
     }
 
     // Called just before this Command runs the first time

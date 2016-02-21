@@ -1,8 +1,11 @@
 package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.commands.OperateWinch;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CANTalon;
+
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 
 /**
@@ -24,7 +27,8 @@ public class Winch extends Subsystem {
 		if (instance == null) {
 			instance = new Winch(); 
 		}
-			return instance;
+		SmartDashboard.putData(instance);
+		return instance;
 	}
 
 	public void initDefaultCommand() {
@@ -35,18 +39,24 @@ public class Winch extends Subsystem {
     
     public void down() {
 		winch.set(-0.75);
+		SmartDashboard.putString("Winch motion", "down std");
+
     }
     public void down(double speed) {
     		winch.set(Math.abs(speed)*-1.0);
+    		SmartDashboard.putString("Winch motion", "down var");
     }
     public void up() {
     		winch.set(0.75);
+    		SmartDashboard.putString("Winch motion", "up std");
     }
     public void up(double speed) {
 		winch.set(Math.abs(speed));
-}
+		SmartDashboard.putString("Winch motion", "up var");
+    }
     public void stop() {
     		winch.set(0);
+    		SmartDashboard.putString("Winch motion", "stop");
     }
     
 }

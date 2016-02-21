@@ -14,7 +14,7 @@ public class AirCompressor extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	Compressor compressor = new Compressor(2);
+	Compressor compressor = new Compressor(0);
 	
 	public static AirCompressor instance;
 	

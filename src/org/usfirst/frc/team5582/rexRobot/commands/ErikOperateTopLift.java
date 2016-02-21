@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
