@@ -6,11 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
 import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
 import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
-import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
-import org.usfirst.frc.team5582.rexRobot.commands.OperateBottomLift;
 
 /**
  * The VM is configured to automatically run this class, and to call the

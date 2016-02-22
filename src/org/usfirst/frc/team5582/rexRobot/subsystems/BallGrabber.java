@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
+import org.usfirst.frc.team5582.rexRobot.commands.LiftBallGrabber;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,11 +12,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class BallGrabber extends Subsystem {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	
-	Solenoid grabberSolenoid = new Solenoid(RobotMap.grabberSolenoid); // Closest to Arm
-	Solenoid lifterSolenoid = new Solenoid(RobotMap.liftSolenoid); // Farthest from arm
+    /*
+     * The BallGrabber is the entire rotating assembly. It carries the BallPinchers
+     * subsystem, but the BallPinchers subsystem can be operated independently.	
+     */
+	Solenoid lifterSolenoid = new Solenoid(RobotMap.liftSolenoid); 
 	Solenoid shooterSolenoid = new Solenoid(RobotMap.shooterSolenoid);
 	public static BallGrabber instance;
 	
@@ -31,25 +32,19 @@ public class BallGrabber extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here. Or don't.
-        
+        setDefaultCommand(new LiftBallGrabber());
     }
     
-    public void grab() {
-    		grabberSolenoid.set(false);
-    }
-    public void release() {
-    		grabberSolenoid.set(true);
-    }
-    public void shoot() {
+    public void shooterPush() {
     		shooterSolenoid.set(true);
     }
-    public void retract() {
+    public void shooterPull() {
     		shooterSolenoid.set(false);
     }
-    public void lift() {
+    public void grabberUp() {
     		lifterSolenoid.set(true);
     }
-    public void drop() {
+    public void grabberDown() {
     		lifterSolenoid.set(false);
     }
     

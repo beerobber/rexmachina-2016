@@ -1,42 +1,24 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
+import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;;
 
 /**
  *
  */
-public class OperateWinch extends CommandBase {
+public class LiftBallGrabber extends CommandBase {
 
-    public OperateWinch() {
+    public LiftBallGrabber() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(winch);
+        requires(ballGrabber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	ballGrabber.grabberUp();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	OI.WinchState state = OI.getWinchState();
-		switch (state) {
-		case DOWN: {
-			winch.down();
-			break;
-		}
-		case UP: {
-			winch.up();
-			break;
-		}
-		case STOP: {
-			winch.stop();
-			break;
-		}
-		}
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -6,46 +6,36 @@ import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 /**
  *
  */
-public class OperateWinch extends CommandBase {
+public class GrabBall extends CommandBase {
 
-    public OperateWinch() {
+    public GrabBall() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(winch);
+    		requires(ballGrabber);
+    		requires(ballPinchers);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    		ballGrabber.grabberDown();
+    		ballPinchers.pinchersOpen();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	OI.WinchState state = OI.getWinchState();
-		switch (state) {
-		case DOWN: {
-			winch.down();
-			break;
-		}
-		case UP: {
-			winch.up();
-			break;
-		}
-		case STOP: {
-			winch.stop();
-			break;
-		}
-		}
+    		
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return !OI.ballGrab.get();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    		ballPinchers.pinchersClose();
     }
 
     // Called when another command which requires one or more of the same

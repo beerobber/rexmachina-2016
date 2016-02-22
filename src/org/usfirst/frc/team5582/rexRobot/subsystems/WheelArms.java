@@ -1,14 +1,12 @@
 package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
-import org.usfirst.frc.team5582.rexRobot.commands.RotateArms;
+import org.usfirst.frc.team5582.rexRobot.commands.RotateWheelArms;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.Counter;
-import edu.wpi.first.wpilibj.DigitalInput;
 
 /**
  *
@@ -19,8 +17,6 @@ public class WheelArms extends Subsystem {
 	Spark myWheelArms;
 	// String potentiometer
 	AnalogPotentiometer wheelArmsPot;
-	//DigitalInput wheelArmsLimitSwitch;
-	//Counter limitSwitchCounter;
 	
 	// First, some Singleton housekeeping. Make sure there is only one.	
 	public static WheelArms instance;
@@ -39,38 +35,18 @@ public class WheelArms extends Subsystem {
     protected WheelArms() {
 		myWheelArms = new Spark(RobotMap.wheelArms);
 		wheelArmsPot = new AnalogPotentiometer(0, 360, 30);
-		//wheelArmsLimitSwitch = new DigitalInput(9);
-		//limitSwitchCounter = new Counter(wheelArmsLimitSwitch);
     }
     
-    /*
-    public boolean isLimitSwitchTripped() {
-    		SmartDashboard.putNumber("limitSwitchCounter", limitSwitchCounter.get());
-    		return limitSwitchCounter.get() > 0;
-    }
-    
-    public void initializeLimitCounter() {
-    		limitSwitchCounter.reset();
-    }
-    */
-	
     public void initDefaultCommand() {
-        setDefaultCommand(new RotateArms());
+        setDefaultCommand(new RotateWheelArms());
     }
     public void down() {
     		myWheelArms.set(-0.5);
     		SmartDashboard.putString("WheelArms motion", "down");
     }
     public void up() {
-    		myWheelArms.set(0.5);
-    		/*
-    		if (!wheelArmsLimitSwitch.get()) {
-    			myWheelArms.set(0);
-    		} else {
-        		myWheelArms.set(0.5);    			
-    		}
-    		*/
-    		SmartDashboard.putString("WheelArms motion", "up");
+    	myWheelArms.set(0.5);
+    	SmartDashboard.putString("WheelArms motion", "up");
     }
     public void stop() {
 		myWheelArms.set(0);

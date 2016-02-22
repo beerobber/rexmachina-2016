@@ -65,19 +65,7 @@ public class OI {
 			return "TopLiftState" + this.state;
 		}
     }
-    // BALL SPINNER STATE
-    public enum BallSpinnerState {
- 		OUT("out"), IN("in"), STOP("stop");
- 		String state;
- 		
- 		private BallSpinnerState(String stateIn) {
- 			this.state = stateIn;
- 		}
- 		
- 		public String toString() {
- 			return "BallLiftState" + this.state;
- 		}
-     }
+
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
@@ -103,7 +91,7 @@ public class OI {
 	// Ball Arm Buttons
 	public static Button ballGrab;
 	public static Button ballShoot;
-	public static Button armsLift;
+	public static Button ballGrabberDrop;
 	//ball spinner
 	public static Button ballSpinnerOut;
 	public static Button ballSpinnerIn;
@@ -118,11 +106,7 @@ public class OI {
 		tankRightStick = new Joystick(1);
 		// Just a convenience reference
 		arcadeStick = tankLeftStick;
-		// FOLLOW OBJECT
-		// Ultrasonic follow buttons
-		// followButton = new JoystickButton(arcadeStick, 6);
-		// followButton.whileHeld(new ErikFollowObject());
-		// Bottom Lift Buttons
+		
 		bottomLiftUp = new JoystickButton(arcadeStick, 6);
 		bottomLiftDown = new JoystickButton(arcadeStick, 7);
 		//Top Lift Buttons
@@ -135,14 +119,16 @@ public class OI {
 		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
 		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
 		//BALL GRABBER Buttons
-		ballGrab = new JoystickButton(arcadeStick, 8);
-		armsLift = new JoystickButton(arcadeStick, 9);
+		ballGrab = new JoystickButton(arcadeStick, 4);
+		ballGrabberDrop = new JoystickButton(arcadeStick, 5);
 		ballShoot = new JoystickButton(arcadeStick, 1);
 		
 		
 		//Ball Spinner Buttons
 		ballSpinnerIn = new JoystickButton(arcadeStick, 4);
 		ballSpinnerOut = new JoystickButton(arcadeStick, 5);
+		ballGrab.whenPressed(new GrabBall());
+		ballGrabberDrop.whileHeld(new DropBallGrabber());
 			
 	}	
 	// WHEEL ARMS STATE
@@ -190,18 +176,7 @@ public class OI {
 			return TopLiftState.STOP;
 		}
 	}
-	// BALL SPINNER STATE
-	public static BallSpinnerState getBallSpinnerState(){
-		if (ballSpinnerOut.get()) {
-			return BallSpinnerState.OUT;
-		}
-		else if (ballSpinnerIn.get()) {
-			return BallSpinnerState.IN;
-		}
-		else {
-			return BallSpinnerState.STOP;
-		}
-	}
+
 	
     public static double getArcadeJoystickX()
     {
