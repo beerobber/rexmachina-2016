@@ -139,7 +139,6 @@ public class OI {
 		armsLift = new JoystickButton(arcadeStick, 9);
 		ballShoot = new JoystickButton(arcadeStick, 1);
 		
-		ballGrab.whenPressed(new GrabBall());
 		
 		//Ball Spinner Buttons
 		ballSpinnerIn = new JoystickButton(arcadeStick, 4);
