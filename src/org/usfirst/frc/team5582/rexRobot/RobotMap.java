@@ -8,7 +8,11 @@ package org.usfirst.frc.team5582.rexRobot;
 public class RobotMap {
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
-    public static int leftMotorCANA = 3;
+    
+	public static int leftJoystickPort = 0;
+	public static int rightJoystickPort = 1;
+	public static int xboxControllerPort = 2;
+	public static int leftMotorCANA = 3;
     public static int leftMotorCANB = 4;
     public static int rightMotorCANA = 1;
     public static int rightMotorCANB = 2;
@@ -18,7 +22,8 @@ public class RobotMap {
     public static int topLiftMotor = 8;
     public static int winch = 5;
     public static int pincherSolenoid = 0;
-    public static int liftSolenoid = 1;
+    public static int liftSpark = 1;
+    public static int grabberSolenoid = 1;
     public static int shooterSolenoid = 3;
     
     // If you are using multiple modules, make sure to define both the port

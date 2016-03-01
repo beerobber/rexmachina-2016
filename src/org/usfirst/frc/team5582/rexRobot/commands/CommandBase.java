@@ -13,6 +13,7 @@ import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
 import org.usfirst.frc.team5582.rexRobot.subsystems.BallGrabber;
 import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
 import org.usfirst.frc.team5582.rexRobot.subsystems.ErikTopLift;
+import org.usfirst.frc.team5582.rexRobot.subsystems.BallArms;
 
 /**
  *
@@ -28,6 +29,7 @@ public abstract class CommandBase extends Command {
 	public static BallGrabber ballGrabber;
 	public static BallPinchers ballPinchers;
 	public static ErikTopLift topLift;
+	public static BallArms ballArms;
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();

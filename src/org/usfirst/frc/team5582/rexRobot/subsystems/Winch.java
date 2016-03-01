@@ -1,11 +1,9 @@
 package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.commands.OperateWinch;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.CANTalon;
-
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 
 /**

@@ -42,8 +42,8 @@ public class DriveTrain extends Subsystem {
     		leftTalonB = new CANTalon(RobotMap.leftMotorCANB);
     		rightTalonA = new CANTalon(RobotMap.rightMotorCANA);
     		rightTalonB = new CANTalon(RobotMap.rightMotorCANB);
-    		rexDrive = new RobotDrive(leftTalonB, leftTalonA, rightTalonB, rightTalonA);
-		
+    		rexDrive = new RobotDrive(rightTalonB, rightTalonA, leftTalonB, leftTalonA);
+
 		ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
     }
     

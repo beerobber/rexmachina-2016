@@ -4,6 +4,7 @@ import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.LiftBallGrabber;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -16,8 +17,9 @@ public class BallGrabber extends Subsystem {
      * The BallGrabber is the entire rotating assembly. It carries the BallPinchers
      * subsystem, but the BallPinchers subsystem can be operated independently.	
      */
-	Solenoid lifterSolenoid = new Solenoid(RobotMap.liftSolenoid); 
+	Spark liftSpark = new Spark(RobotMap.liftSpark); 
 	Solenoid shooterSolenoid = new Solenoid(RobotMap.shooterSolenoid);
+	Solenoid grabberSolenoid = new Solenoid(RobotMap.grabberSolenoid);
 	public static BallGrabber instance;
 	
 	public static BallGrabber getInstance() {
@@ -42,11 +44,16 @@ public class BallGrabber extends Subsystem {
     		shooterSolenoid.set(false);
     }
     public void grabberUp() {
-    		lifterSolenoid.set(true);
+    		liftSpark.set(1);
     }
     public void grabberDown() {
-    		lifterSolenoid.set(false);
+    		liftSpark.set(-1);
     }
-    
+    public void grabberGrab() {
+		grabberSolenoid.set(true);
+    }
+    public void grabberRelease() {
+		grabberSolenoid.set(false);
+    }   
 }
 

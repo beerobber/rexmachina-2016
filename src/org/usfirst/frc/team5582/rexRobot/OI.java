@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 import org.usfirst.frc.team5582.rexRobot.commands.*;
 import edu.wpi.first.wpilibj.DriverStation;
+import org.usfirst.frc.team5582.rexRobot.subsystems.*;
 
 
 
@@ -75,6 +76,8 @@ public class OI {
 	public static Joystick tankLeftStick;
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
+	public static Joystick xboxController;
+	public static XboxController otherXboxController;
 	public static Button followButton;
 	// wheel arms
 	public static Button armsDownButton;
@@ -92,6 +95,7 @@ public class OI {
 	public static Button ballGrab;
 	public static Button ballShoot;
 	public static Button ballGrabberDrop;
+	public static double rotateBallArms;
 	//ball spinner
 	public static Button ballSpinnerOut;
 	public static Button ballSpinnerIn;
@@ -102,8 +106,10 @@ public class OI {
 		driverStation = DriverStation.getInstance();
 		
 		// Tank controls
-		tankLeftStick = new Joystick(0);
-		tankRightStick = new Joystick(1);
+		tankLeftStick = new Joystick(RobotMap.leftJoystickPort);
+		tankRightStick = new Joystick(RobotMap.rightJoystickPort);
+		xboxController = new Joystick(RobotMap.xboxControllerPort);
+		otherXboxController = new XboxController(RobotMap.xboxControllerPort);
 		// Just a convenience reference
 		arcadeStick = tankLeftStick;
 		
@@ -119,17 +125,30 @@ public class OI {
 		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
 		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
 		//BALL GRABBER Buttons
+		/*
 		ballGrab = new JoystickButton(arcadeStick, 4);
 		ballGrabberDrop = new JoystickButton(arcadeStick, 5);
 		ballShoot = new JoystickButton(arcadeStick, 1);
+		rotateBallArms = arcadeStick.getZ();
+			ballGrab.whenPressed(new GrabBall());
+			ballGrabberDrop.whileHeld(new DropBallGrabber());
+			ballShoot.whenPressed(new ShootBall());
+			*/
+		// BALL GRABBER XBOX
+		// Using Joystick
+		/* boolean buttonOne = xboxController.getRawButton(7); // where seven is the number reported in the windows control panel
+		boolean buttonTwo = xboxController.getRawButton(8);
+		boolean buttonThree = xboxController.getRawButton(9);
+		ballGrab = new JoystickButton(xboxController, 4);
+		ballShoot = new JoystickButton(xboxController, buttonThree);
+		ballGrabberDrop = new JoystickButton(xboxController, buttonTwo);
+		 */
+		// BALL GRABBER XBOX
+		// Using subclass
+		otherXboxController.a.whenPressed(new GrabBall());
+		otherXboxController.b.whileHeld(new DropBallGrabber());
+		otherXboxController.rb.toggleWhenPressed(new ShootBall());
 		
-		
-		//Ball Spinner Buttons
-		ballSpinnerIn = new JoystickButton(arcadeStick, 4);
-		ballSpinnerOut = new JoystickButton(arcadeStick, 5);
-		ballGrab.whenPressed(new GrabBall());
-		ballGrabberDrop.whileHeld(new DropBallGrabber());
-			
 	}	
 	// WHEEL ARMS STATE
 	public static WheelArmsState getWheelArmsState() {
