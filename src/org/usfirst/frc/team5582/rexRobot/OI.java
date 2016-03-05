@@ -66,6 +66,19 @@ public class OI {
 			return "TopLiftState" + this.state;
 		}
     }
+    // GRABBER ARMS STATE
+    public enum GrabberArmsState {
+		GRABBED("grabbed"), RELEASED("released");
+		String state;
+		
+		private GrabberArmsState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "GrabberArmsState" + this.state;
+		}
+    }
 
     
     // Start the command when the button is released  and let it run the command
@@ -76,8 +89,6 @@ public class OI {
 	public static Joystick tankLeftStick;
 	public static Joystick tankRightStick;
 	public static Joystick arcadeStick;
-	public static Joystick xboxController;
-	public static XboxController otherXboxController;
 	public static Button followButton;
 	// wheel arms
 	public static Button armsDownButton;
@@ -99,7 +110,11 @@ public class OI {
 	//ball spinner
 	public static Button ballSpinnerOut;
 	public static Button ballSpinnerIn;
-	
+	// XBOX VARIABLES
+	public static XboxController xboxController;
+	public static boolean grabbingBall;
+	public static boolean shootingBall;
+	public static double controlBallArms;
 	
 	public static void init()
 	{
@@ -108,8 +123,6 @@ public class OI {
 		// Tank controls
 		tankLeftStick = new Joystick(RobotMap.leftJoystickPort);
 		tankRightStick = new Joystick(RobotMap.rightJoystickPort);
-		xboxController = new Joystick(RobotMap.xboxControllerPort);
-		otherXboxController = new XboxController(RobotMap.xboxControllerPort);
 		// Just a convenience reference
 		arcadeStick = tankLeftStick;
 		
@@ -130,24 +143,19 @@ public class OI {
 		ballGrabberDrop = new JoystickButton(arcadeStick, 5);
 		ballShoot = new JoystickButton(arcadeStick, 1);
 		rotateBallArms = arcadeStick.getZ();
-			ballGrab.whenPressed(new GrabBall());
-			ballGrabberDrop.whileHeld(new DropBallGrabber());
-			ballShoot.whenPressed(new ShootBall());
-			*/
-		// BALL GRABBER XBOX
-		// Using Joystick
-		/* boolean buttonOne = xboxController.getRawButton(7); // where seven is the number reported in the windows control panel
-		boolean buttonTwo = xboxController.getRawButton(8);
-		boolean buttonThree = xboxController.getRawButton(9);
-		ballGrab = new JoystickButton(xboxController, 4);
-		ballShoot = new JoystickButton(xboxController, buttonThree);
-		ballGrabberDrop = new JoystickButton(xboxController, buttonTwo);
-		 */
+		ballGrab.whenPressed(new GrabBall());
+		ballGrabberDrop.whileHeld(new DropBallGrabber());
+		ballShoot.whenPressed(new ShootBall());
+		*/
+		// **XBOX VARIABLES**
+		xboxController = new XboxController(RobotMap.xboxControllerPort);
 		// BALL GRABBER XBOX
 		// Using subclass
-		otherXboxController.a.whenPressed(new GrabBall());
-		otherXboxController.b.whileHeld(new DropBallGrabber());
-		otherXboxController.rb.toggleWhenPressed(new ShootBall());
+		xboxController.a.whenPressed(new GrabBall());
+		xboxController.rb.toggleWhenPressed(new ShootBall());
+		grabbingBall = xboxController.a.get();
+		shootingBall = xboxController.rb.get();
+		controlBallArms = xboxController.rightStick.getY();
 		
 	}	
 	// WHEEL ARMS STATE
@@ -193,6 +201,14 @@ public class OI {
 		}
 		else {
 			return TopLiftState.STOP;
+		}
+	}
+	public static GrabberArmsState getGrabberArmsState(){
+		if (grabbingBall) {
+			return GrabberArmsState.GRABBED;
+		}
+		else {
+			return GrabberArmsState.RELEASED;
 		}
 	}
 

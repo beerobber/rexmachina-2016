@@ -9,21 +9,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class BallPinchers extends Subsystem {
+public class BallShooter extends Subsystem {
     
 	/*
 	 * The BallPinchers are attached to the BallGrabber assembly 
 	 * but can operate independently
 	 */
-	Solenoid pincherSolenoid = new Solenoid(RobotMap.pincherSolenoid); 
+	Solenoid shooterSolenoid = new Solenoid(RobotMap.shooterSolenoid); 
 	
-	public static BallPinchers instance;
+	public static BallShooter instance;
 	
-	public static BallPinchers getInstance() {
+	public static BallShooter getInstance() {
 			
 		// Only instantiate if no prior instance exists
 		if (instance == null) {
-			instance = new BallPinchers(); 
+			instance = new BallShooter(); 
 		}
 		SmartDashboard.putData(instance);
 		return instance;
@@ -32,12 +32,14 @@ public class BallPinchers extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    }
-    public void pinchersClose() {
-		pincherSolenoid.set(false);
+
+
+}
+    
+    public void shooterPush() {
+		shooterSolenoid.set(true);
     }
     public void pinchersOpen() {
-		pincherSolenoid.set(true);
-    }
+    		shooterSolenoid.set(false);
+    }  
 }
-

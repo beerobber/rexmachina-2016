@@ -12,19 +12,28 @@ public class GrabBall extends CommandBase {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     		requires(ballGrabber);
-    		requires(ballPinchers);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     		// ballGrabber.grabberDown();
-    		ballPinchers.pinchersOpen();
+    		ballGrabber.grabberRelease();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    		
+    	OI.GrabberArmsState state = OI.getGrabberArmsState();
+		switch (state) {
+		case GRABBED: {
+			ballGrabber.grabberGrab();
+			break;
+		}
+		case RELEASED: {
+			ballGrabber.grabberRelease();
+			break;
+		}
+		}
     	
     }
 
@@ -35,7 +44,7 @@ public class GrabBall extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    		ballPinchers.pinchersClose();
+    		ballGrabber.grabberGrab();
     }
 
     // Called when another command which requires one or more of the same
