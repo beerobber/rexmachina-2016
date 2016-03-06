@@ -21,7 +21,7 @@ public class RotateBallArms extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	double power = OI.controlBallArms;
+    	double power = OI.xboxControllerTwo.leftStick.getY();
     	ballArms.setMotorPower(power);
     }
 

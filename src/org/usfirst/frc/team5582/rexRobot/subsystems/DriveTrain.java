@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Encoder;
 
 /**
  *
@@ -18,6 +19,7 @@ public class DriveTrain extends Subsystem {
 	RobotDrive rexDrive;
 	CANTalon leftTalonA, leftTalonB, rightTalonA, rightTalonB;
     public AnalogInput ultrasonicSensor;
+    public Encoder encoder;
 
 	// First, some Singleton housekeeping. Make sure there is only one.	
 	public static DriveTrain instance;
@@ -45,27 +47,21 @@ public class DriveTrain extends Subsystem {
     		rexDrive = new RobotDrive(rightTalonB, rightTalonA, leftTalonB, leftTalonA);
 
 		ultrasonicSensor = new AnalogInput(RobotMap.ultrasonicSensorChannel);
+		encoder = new Encoder(RobotMap.encoderLeftA, RobotMap.encoderLeftB);
     }
     
     public void tankDrive(double leftY, double rightY) {
     		rexDrive.tankDrive(leftY, rightY);
     }
     
-    public void arcadeDrive(Joystick stick) {
+    public void arcadeDriveSingleStick(Joystick stick) {
     		rexDrive.arcadeDrive(stick);
     }
-    
-    public void turboDrive() {
-    		double turboLeftTalonA = leftTalonA.get();
-    		double turboLeftTalonB = leftTalonA.get();
-    		double turboRightTalonA = leftTalonA.get();
-    		double turboRightTalonB = leftTalonA.get();
-    		leftTalonA.set(turboLeftTalonA*1.2);
-    		leftTalonB.set(turboLeftTalonB*1.2);
-    		rightTalonA.set(turboRightTalonA*1.2);
-    		rightTalonB.set(turboRightTalonB*1.2);
-    		
+    public void arcadeDriveStickAxis(double leftY, double leftX) {
+    		rexDrive.arcadeDrive(leftY, leftX);
+    		SmartDashboard.putNumber("Encoder value", encoder.getDistance());
     }
+    
     
 }
 

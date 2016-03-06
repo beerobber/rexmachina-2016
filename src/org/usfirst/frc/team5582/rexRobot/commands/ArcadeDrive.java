@@ -19,7 +19,7 @@ public class ArcadeDrive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		driveTrain.arcadeDrive(OI.arcadeStick);
+    		driveTrain.arcadeDriveStickAxis(OI.xboxControllerOne.leftStick.getX(), OI.xboxControllerOne.leftStick.getY());
     }
 
     // Make this return true when this Command no longer needs to run execute()

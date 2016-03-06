@@ -1,11 +1,9 @@
 package org.usfirst.frc.team5582.rexRobot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Joystick;
-import org.usfirst.frc.team5582.rexRobot.commands.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import org.usfirst.frc.team5582.rexRobot.subsystems.*;
+import org.usfirst.frc.team5582.rexRobot.commands.*;
+import edu.wpi.first.wpilibj.buttons.Button;
 
 
 
@@ -40,7 +38,6 @@ public class OI {
 			return "WinchState" + this.state;
 		}
 }
-
     // BOTTOM LIFT STATE
     public enum BottomLiftState {
 		DOWN("down"), UP("up"), STOP("stop");
@@ -86,9 +83,8 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	public static DriverStation driverStation;
-	public static Joystick tankLeftStick;
-	public static Joystick tankRightStick;
-	public static Joystick arcadeStick;
+	public static XboxController xboxControllerOne;
+	public static XboxController xboxControllerTwo;
 	public static Button followButton;
 	// wheel arms
 	public static Button armsDownButton;
@@ -103,60 +99,35 @@ public class OI {
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
 	// Ball Arm Buttons
-	public static Button ballGrab;
+	public static Button ballGrabToggle;
 	public static Button ballShoot;
-	public static Button ballGrabberDrop;
-	public static double rotateBallArms;
-	//ball spinner
-	public static Button ballSpinnerOut;
-	public static Button ballSpinnerIn;
-	// XBOX VARIABLES
-	public static XboxController xboxController;
-	public static boolean grabbingBall;
-	public static boolean shootingBall;
-	public static double controlBallArms;
+	
 	
 	public static void init()
 	{
 		driverStation = DriverStation.getInstance();
 		
 		// Tank controls
-		tankLeftStick = new Joystick(RobotMap.leftJoystickPort);
-		tankRightStick = new Joystick(RobotMap.rightJoystickPort);
-		// Just a convenience reference
-		arcadeStick = tankLeftStick;
+		xboxControllerOne = new XboxController(RobotMap.xboxControllerOne);
+		xboxControllerTwo = new XboxController(RobotMap.xboxControllerTwo);
 		
-		bottomLiftUp = new JoystickButton(arcadeStick, 6);
-		bottomLiftDown = new JoystickButton(arcadeStick, 7);
+		bottomLiftUp = xboxControllerTwo.rt;
+		bottomLiftDown = xboxControllerTwo.lt;
 		//Top Lift Buttons
-		topLiftUp = new JoystickButton(arcadeStick, 8);
-		topLiftDown = new JoystickButton(arcadeStick, 9);
+		topLiftUp = xboxControllerTwo.rb;
+		topLiftDown = xboxControllerTwo.lb;
 		// WHEEL ARMS
-		armsDownButton = new JoystickButton(arcadeStick, 2);
-		armsUpButton = new JoystickButton(arcadeStick, 3);
+		armsDownButton = xboxControllerOne.a;
+		armsUpButton = xboxControllerOne.b;
 		// WINCH Buttons
-		winchMotorUpButton = new JoystickButton(arcadeStick, 10);
-		winchMotorDownButton = new JoystickButton(arcadeStick, 11);
+		winchMotorUpButton = xboxControllerOne.x;
+		winchMotorDownButton = xboxControllerOne.y;
 		//BALL GRABBER Buttons
-		/*
-		ballGrab = new JoystickButton(arcadeStick, 4);
-		ballGrabberDrop = new JoystickButton(arcadeStick, 5);
-		ballShoot = new JoystickButton(arcadeStick, 1);
-		rotateBallArms = arcadeStick.getZ();
-		ballGrab.whenPressed(new GrabBall());
-		ballGrabberDrop.whileHeld(new DropBallGrabber());
+		ballGrabToggle = xboxControllerTwo.y;
+		ballShoot = xboxControllerTwo.x;
 		ballShoot.whenPressed(new ShootBall());
-		*/
-		// **XBOX VARIABLES**
-		xboxController = new XboxController(RobotMap.xboxControllerPort);
-		// BALL GRABBER XBOX
-		// Using subclass
-		xboxController.a.whenPressed(new GrabBall());
-		xboxController.rb.toggleWhenPressed(new ShootBall());
-		grabbingBall = xboxController.a.get();
-		shootingBall = xboxController.rb.get();
-		controlBallArms = xboxController.rightStick.getY();
 		
+			
 	}	
 	// WHEEL ARMS STATE
 	public static WheelArmsState getWheelArmsState() {
@@ -178,7 +149,6 @@ public class OI {
 			return WinchState.STOP;
 		}
 	}
-
 	// BOTTOM LIFT STATE
 	public static BottomLiftState getBottomLiftState(){
 		if (bottomLiftUp.get()) {
@@ -203,8 +173,9 @@ public class OI {
 			return TopLiftState.STOP;
 		}
 	}
+	// GRABBER ARMS STATE
 	public static GrabberArmsState getGrabberArmsState(){
-		if (grabbingBall) {
+		if (!ballGrabToggle.get()) {
 			return GrabberArmsState.GRABBED;
 		}
 		else {
@@ -212,14 +183,4 @@ public class OI {
 		}
 	}
 
-	
-    public static double getArcadeJoystickX()
-    {
-      return arcadeStick.getX();
-    }
-
-    public static double getArcadeJoystickY()
-    {
-      return arcadeStick.getY();
-    }
 }
