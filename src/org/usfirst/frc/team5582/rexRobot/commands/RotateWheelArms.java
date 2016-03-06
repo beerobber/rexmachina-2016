@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -54,6 +55,17 @@ public class RotateWheelArms extends CommandBase {
     		
     		// This puts the position of the wheel arms on the screen
     		SmartDashboard.putNumber("Wheel Arms Position", wheelArms.getWheelArmsPosition());
+    		
+    		/*
+    		double upperLimitValue = 0;
+    		double lowerLimitValue = 0;
+    		if (wheelArms.getWheelArmsPosition() == upperLimitValue) {
+    			wheelArms.setMotorPowerDown(power);
+    		}
+    		if (wheelArms.getWheelArmsPosition() == lowerLimitValue) {
+    			wheelArms.setMotorPowerUp(power);
+    		}
+    		*/
     	}
 
     // Make this return true when this Command no longer needs to run execute()

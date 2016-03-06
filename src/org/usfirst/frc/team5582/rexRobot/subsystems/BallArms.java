@@ -2,8 +2,10 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.RotateBallArms;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
@@ -32,7 +34,7 @@ public class BallArms extends Subsystem {
 	}
 	
     protected BallArms() {
-		ballArmsPot = new AnalogPotentiometer(0, 360, 0);
+		ballArmsPot = new AnalogPotentiometer(RobotMap.ballArmsPot, 360, 0);
     }
 	
     public void initDefaultCommand() {
@@ -44,7 +46,12 @@ public class BallArms extends Subsystem {
     public void setMotorPower(double power) {
     		rotator.set(power);
     }
-    
+	public void setMotorPowerDown(double power) {
+		rotator.set(Math.abs(power));
+    }
+    public void setMotorPowerUp(double power) {
+		rotator.set(-(Math.abs(power)));
+    }
 	public double getBallArmsPosition() {
 		return ballArmsPot.get();
 	}

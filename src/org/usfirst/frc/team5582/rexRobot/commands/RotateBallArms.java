@@ -27,6 +27,17 @@ public class RotateBallArms extends CommandBase {
     	ballArms.setMotorPower(power);
     	SmartDashboard.putNumber("Wheel Arms Position", ballArms.getBallArmsPosition());
     }
+    
+    /*
+	double upperLimitValue = 0;
+	double lowerLimitValue = 0;
+	if (ballArms.getballArmsPosition() == upperLimitValue) {
+		ballArms.setMotorPowerDown(power);
+	}
+	if (ballArms.getballArmsPosition() == lowerLimitValue) {
+		ballArms.setMotorPowerUp(power);
+	}
+	*/
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
