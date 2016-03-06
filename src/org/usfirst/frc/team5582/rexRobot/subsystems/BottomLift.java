@@ -18,7 +18,8 @@ public class BottomLift extends Subsystem {
 	// sets up sensors and motors for use
 	// Mapping Accelerometer to its port and range (placeholder mode: +-2g mode)
 	Accelerometer accel = new ADXL345_I2C(I2C.Port.kOnboard, Accelerometer.Range.k4G);
-	CANTalon bottomLiftMotor = new CANTalon(RobotMap.bottomLiftMotor);
+	CANTalon bottomLiftMotorA = new CANTalon(RobotMap.bottomLiftMotorA);
+	CANTalon bottomLiftMotorB = new CANTalon(RobotMap.bottomLiftMotorB);
 	// set up the speed controller
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -45,12 +46,15 @@ public class BottomLift extends Subsystem {
 	}
 	
 	public void down(){
-	bottomLiftMotor.set(-0.5);
+	bottomLiftMotorA.set(0.3);
+	bottomLiftMotorB.set(-0.3);
 	}
 	public void up() {
-	bottomLiftMotor.set(0.5);
+		bottomLiftMotorA.set(-1);
+		bottomLiftMotorB.set(1);
 	}
 	public void stop() {
-	bottomLiftMotor.set(0);
+		bottomLiftMotorA.set(0);
+		bottomLiftMotorB.set(0);
 	}
 }

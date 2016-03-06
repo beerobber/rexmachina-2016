@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -9,31 +8,38 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RotateArms extends CommandBase {
 
-	
-	
     public RotateArms() {
         // Declaring subsystem dependencies
         // RotateArms requires exclusive wheeled arm use
-    		requires((Subsystem) wheelArms);
+    		requires(wheelArms);
     }
-    
-
-
+   
     // Called just before this Command runs the first time
     protected void initialize() {
+		SmartDashboard.putData(this);
+		SmartDashboard.putString("RotateArms init", "here");
+		//wheelArms.initializeLimitCounter();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    		OI.WheelArmState state = OI.getWheelArmState();
+    		OI.WheelArmsState state = OI.getWheelArmsState();
     		switch (state) {
     		case DOWN: {
     			wheelArms.down();
+    			//wheelArms.initializeLimitCounter();
     			break;
     		}
     		case UP: {
     			wheelArms.up();
+    			/*
+    			if (!wheelArms.isLimitSwitchTripped()) {
+        			wheelArms.up();    				
+    			} else {
+    				wheelArms.stop();
+    			}
+    			*/
     			break;
     		}
     		case STOP: {
@@ -42,8 +48,7 @@ public class RotateArms extends CommandBase {
     		}
     		}
     		// This puts the position of the wheel arms on the screen
-    		SmartDashboard.putNumber("Wheel Arms Position", wheelArms.getWheelArmsPosition());
-    		System.out.format("Wheel Arms Position: %f", wheelArms.getWheelArmsPosition());
+    		//SmartDashboard.putNumber("Wheel Arms Position", wheelArms.getWheelArmsPosition());
     	}
 
     // Make this return true when this Command no longer needs to run execute()
@@ -58,5 +63,6 @@ public class RotateArms extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    		wheelArms.stop();
     }
 }

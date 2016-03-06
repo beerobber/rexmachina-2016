@@ -29,6 +29,7 @@ public class ErikOperateTopLift extends CommandBase {
     	}
     	case UP: {
     		topLift.up();
+    		break;
     	}
     	case STOP:{
     		topLift.stop();

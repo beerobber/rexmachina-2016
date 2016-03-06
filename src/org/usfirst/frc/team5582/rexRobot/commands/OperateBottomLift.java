@@ -3,9 +3,7 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 
 /**
  *
@@ -18,7 +16,7 @@ public class OperateBottomLift extends CommandBase {
     	
     	//need the Bottom Lift, Winch, and Drive Train
     	requires(bottomLift);
-    	requires(driveTrain);
+    	//requires(driveTrain);
     	requires(winch);
     }
 
@@ -40,12 +38,12 @@ public class OperateBottomLift extends CommandBase {
     	//possibly set state to false if button for other system is pressed
     	switch (state) {
     	case DOWN: {
-    		winch.down();
+    		winch.down(.1);
     		bottomLift.down();
     		break;
     	}
     	case UP: {
-    		winch.up();
+    		winch.up(.1);
     		bottomLift.up();
     		break;
     	}
