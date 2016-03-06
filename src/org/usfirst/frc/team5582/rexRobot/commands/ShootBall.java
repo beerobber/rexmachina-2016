@@ -1,15 +1,16 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 
 /**
  *
  */
-public class ShootBall extends Command {
+public class ShootBall extends CommandBase {
 
     public ShootBall() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(ballGrabber);
     }
 
     // Called just before this Command runs the first time
@@ -18,6 +19,9 @@ public class ShootBall extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

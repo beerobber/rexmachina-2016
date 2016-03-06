@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class RotateArms extends CommandBase {
+public class RotateWheelArms extends CommandBase {
 
-    public RotateArms() {
+    public RotateWheelArms() {
         // Declaring subsystem dependencies
         // RotateArms requires exclusive wheeled arm use
     		requires(wheelArms);
@@ -48,7 +48,7 @@ public class RotateArms extends CommandBase {
     		}
     		}
     		// This puts the position of the wheel arms on the screen
-    		//SmartDashboard.putNumber("Wheel Arms Position", wheelArms.getWheelArmsPosition());
+    		SmartDashboard.putNumber("Wheel Arms Position", wheelArms.getWheelArmsPosition());
     	}
 
     // Make this return true when this Command no longer needs to run execute()

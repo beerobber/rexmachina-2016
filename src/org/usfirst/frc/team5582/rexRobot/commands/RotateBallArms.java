@@ -6,12 +6,12 @@ import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 /**
  *
  */
-public class OperateWinch extends CommandBase {
+public class RotateBallArms extends CommandBase {
 
-    public OperateWinch() {
+    public RotateBallArms() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(winch);
+    		requires(ballArms);
     }
 
     // Called just before this Command runs the first time
@@ -21,22 +21,8 @@ public class OperateWinch extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	OI.WinchState state = OI.getWinchState();
-		switch (state) {
-		case DOWN: {
-			winch.down();
-			break;
-		}
-		case UP: {
-			winch.up();
-			break;
-		}
-		case STOP: {
-			winch.stop();
-			break;
-		}
-		}
-    	
+    	double power = OI.xboxControllerTwo.leftStick.getY();
+    	ballArms.setMotorPower(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()

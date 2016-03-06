@@ -1,11 +1,5 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team5582.rexRobot.subsystems.AirCompressor;
-
-/**
- *
- */
 public class ManageAirCompressor extends CommandBase {
 
     public ManageAirCompressor() {

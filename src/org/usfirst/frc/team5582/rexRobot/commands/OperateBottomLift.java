@@ -3,7 +3,6 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
 import org.usfirst.frc.team5582.rexRobot.OI;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,7 +16,7 @@ public class OperateBottomLift extends CommandBase {
     	//need the Bottom Lift, Winch, and Drive Train
     	requires(bottomLift);
     	//requires(driveTrain);
-    	requires(winch);
+    	//requires(winch);
     }
 
     // Called just before this Command runs the first time
@@ -27,8 +26,6 @@ public class OperateBottomLift extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	//getting tilt from bottom lift
-    	double bottomLiftTilt = bottomLift.getBottomLiftTilt(); 
     	//TODO set up turn counter for winch encoder
     	
     	//TODO set up way of making corrections of winch/encoder according to accelerometer and encoder
@@ -38,12 +35,12 @@ public class OperateBottomLift extends CommandBase {
     	//possibly set state to false if button for other system is pressed
     	switch (state) {
     	case DOWN: {
-    		winch.down(.1);
+    		//winch.down(.1);
     		bottomLift.down();
     		break;
     	}
     	case UP: {
-    		winch.up(.1);
+    		//winch.up(.1);
     		bottomLift.up();
     		break;
     	}
@@ -53,8 +50,6 @@ public class OperateBottomLift extends CommandBase {
     		break;
     	}
     	}
-    	//places whatever the accelerometer currently gives off to SmartDash
-    	SmartDashboard.putNumber("BottomLiftTilt", bottomLiftTilt);
     }
 
     // Make this return true when this Command no longer needs to run execute()
