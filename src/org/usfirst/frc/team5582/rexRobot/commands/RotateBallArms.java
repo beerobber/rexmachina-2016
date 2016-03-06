@@ -3,6 +3,8 @@ package org.usfirst.frc.team5582.rexRobot.commands;
 import org.usfirst.frc.team5582.rexRobot.OI;
 import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  *
  */
@@ -21,8 +23,9 @@ public class RotateBallArms extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	double power = OI.xboxControllerTwo.leftStick.getY();
+    	double power = OI.xboxControllerTwo.rightStick.getY();
     	ballArms.setMotorPower(power);
+    	SmartDashboard.putNumber("Wheel Arms Position", ballArms.getBallArmsPosition());
     }
 
     // Make this return true when this Command no longer needs to run execute()

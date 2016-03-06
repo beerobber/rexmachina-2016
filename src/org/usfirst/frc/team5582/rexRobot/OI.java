@@ -65,7 +65,7 @@ public class OI {
     }
     // GRABBER ARMS STATE
     public enum GrabberArmsState {
-		GRABBED("grabbed"), RELEASED("released");
+		GRABBED("grabbed"), RELEASED("released"), STOP("stop");
 		String state;
 		
 		private GrabberArmsState(String stateIn) {
@@ -75,6 +75,7 @@ public class OI {
 		public String toString() {
 			return "GrabberArmsState" + this.state;
 		}
+		
     }
 
     
@@ -99,7 +100,8 @@ public class OI {
 	public static Button winchMotorUpButton;
 	public static Button winchMotorDownButton;
 	// Ball Arm Buttons
-	public static Button ballGrabToggle;
+	public static Button ballGrabClose;
+	public static Button ballGrabOpen;
 	public static Button ballShoot;
 	
 	
@@ -110,22 +112,29 @@ public class OI {
 		// Tank controls
 		xboxControllerOne = new XboxController(RobotMap.xboxControllerOne);
 		xboxControllerTwo = new XboxController(RobotMap.xboxControllerTwo);
-		
-		bottomLiftUp = xboxControllerTwo.rt;
-		bottomLiftDown = xboxControllerTwo.lt;
-		//Top Lift Buttons
-		topLiftUp = xboxControllerTwo.rb;
-		topLiftDown = xboxControllerTwo.lb;
+		xboxControllerOne.setDeadZone(0.1);
+		xboxControllerTwo.setDeadZone(0.1);
+		/** BUTTONS **/
+		// BOTTOM LIFT
+		// bottomLiftUp = xboxControllerTwo.rt;
+		// bottomLiftDown = xboxControllerTwo.lt;
+		//TOP LIFT
+		topLiftUp = xboxControllerTwo.y;
+		topLiftDown = xboxControllerTwo.x;
 		// WHEEL ARMS
-		armsDownButton = xboxControllerOne.a;
-		armsUpButton = xboxControllerOne.b;
-		// WINCH Buttons
+		// armsDownButton = xboxControllerOne.rb;
+		// armsUpButton = xboxControllerOne.lb;
+		// WINCH
 		winchMotorUpButton = xboxControllerOne.x;
-		winchMotorDownButton = xboxControllerOne.y;
-		//BALL GRABBER Buttons
-		ballGrabToggle = xboxControllerTwo.y;
-		ballShoot = xboxControllerTwo.x;
-		ballShoot.whenPressed(new ShootBall());	
+		winchMotorDownButton = xboxControllerOne.a;
+		//BALL GRABBER
+		ballGrabClose = xboxControllerTwo.lb;
+		ballGrabOpen = xboxControllerTwo.rb;
+		ballGrabOpen.whenPressed(new BallGrabOpen());
+		ballGrabClose.whenPressed(new BallGrabClose());
+		ballShoot = xboxControllerTwo.a;
+		ballShoot.whenPressed(new ShootBall());
+		
 	}	
 	// WHEEL ARMS STATE
 	public static WheelArmsState getWheelArmsState() {
@@ -151,11 +160,9 @@ public class OI {
 	public static BottomLiftState getBottomLiftState(){
 		if (bottomLiftUp.get()) {
 			return BottomLiftState.UP;
-		}
-		else if (bottomLiftDown.get()) {
+		} else if (bottomLiftDown.get()) {
 			return BottomLiftState.DOWN;
-		}
-		else {
+		} else {
 			return BottomLiftState.STOP;
 		}
 	}
@@ -163,21 +170,20 @@ public class OI {
 	public static TopLiftState getTopLiftState(){
 		if (topLiftUp.get()) {
 			return TopLiftState.UP;
-		}
-		else if (topLiftDown.get()) {
+		} else if (topLiftDown.get()) {
 			return TopLiftState.DOWN;
-		}
-		else {
+		} else {
 			return TopLiftState.STOP;
 		}
 	}
 	// GRABBER ARMS STATE
 	public static GrabberArmsState getGrabberArmsState(){
-		if (!ballGrabToggle.get()) {
+		if (ballGrabClose.get()) {
 			return GrabberArmsState.GRABBED;
-		}
-		else {
+		} else if (ballGrabOpen.get()){
 			return GrabberArmsState.RELEASED;
+		} else {
+			return GrabberArmsState.STOP;
 		}
 	}
 

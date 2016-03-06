@@ -15,7 +15,8 @@ public class BallShooter extends Subsystem {
 	 * The BallPinchers are attached to the BallGrabber assembly 
 	 * but can operate independently
 	 */
-	Solenoid shooterSolenoid = new Solenoid(RobotMap.shooterSolenoid); 
+	Solenoid shooterSolenoidOne = new Solenoid(RobotMap.shooterSolenoidOne); 
+	Solenoid shooterSolenoidTwo = new Solenoid(RobotMap.shooterSolenoidTwo);
 	
 	public static BallShooter instance;
 	
@@ -37,9 +38,11 @@ public class BallShooter extends Subsystem {
 }
     
     public void shooterPush() {
-		shooterSolenoid.set(true);
+		shooterSolenoidOne.set(true);
+		shooterSolenoidTwo.set(true);
     }
-    public void pinchersOpen() {
-    		shooterSolenoid.set(false);
+    public void shooterRetract() {
+    		shooterSolenoidOne.set(false);
+    		shooterSolenoidTwo.set(false);
     }  
 }

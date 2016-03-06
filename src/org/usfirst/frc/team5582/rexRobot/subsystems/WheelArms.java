@@ -34,7 +34,7 @@ public class WheelArms extends Subsystem {
 	
     protected WheelArms() {
 		myWheelArms = new Spark(RobotMap.wheelArms);
-		wheelArmsPot = new AnalogPotentiometer(0, 360, 30);
+		wheelArmsPot = new AnalogPotentiometer(RobotMap.wheelArmsPot, 360, 30);
     }
     
     public void initDefaultCommand() {
@@ -51,6 +51,9 @@ public class WheelArms extends Subsystem {
     public void stop() {
 		myWheelArms.set(0);
 		SmartDashboard.putString("WheelArms motion", "stop");
+    }
+    public void setMotorPower(double power) {
+    		myWheelArms.set(power);
     }
     
     // Code creating a public variable with the wheel arms position

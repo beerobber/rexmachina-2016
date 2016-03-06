@@ -27,7 +27,7 @@ public abstract class CommandBase extends Command {
 	public static Winch winch;
 	public static BottomLift bottomLift;
 	public static BallGrabber ballGrabber;
-	public static BallShooter ballPinchers;
+	public static BallShooter ballShooter;
 	public static ErikTopLift topLift;
 	public static BallArms ballArms;
 	
@@ -38,7 +38,7 @@ public abstract class CommandBase extends Command {
 		wheelArms = WheelArms.getInstance();
 		airCompressor = AirCompressor.getInstance();
 		ballGrabber = BallGrabber.getInstance();
-		ballPinchers = BallShooter.getInstance();
+		ballShooter = BallShooter.getInstance();
 		winch = Winch.getInstance();
 		oi = new OI();
 		oi.init();

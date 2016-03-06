@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.RotateBallArms;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
 /**
  *
@@ -14,6 +15,8 @@ public class BallArms extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	Spark rotator = new Spark(RobotMap.liftSpark);
+	AnalogPotentiometer ballArmsPot;
+	
 	
 	// First, some Singleton housekeeping. Make sure there is only one.	
 	public static BallArms instance;
@@ -28,6 +31,10 @@ public class BallArms extends Subsystem {
 		return instance;
 	}
 	
+    protected BallArms() {
+		ballArmsPot = new AnalogPotentiometer(0, 360, 0);
+    }
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -37,6 +44,10 @@ public class BallArms extends Subsystem {
     public void setMotorPower(double power) {
     		rotator.set(power);
     }
+    
+	public double getBallArmsPosition() {
+		return ballArmsPot.get();
+	}
     
 }
 

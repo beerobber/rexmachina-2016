@@ -30,7 +30,7 @@ public class OperateBottomLift extends CommandBase {
     	
     	//TODO set up way of making corrections of winch/encoder according to accelerometer and encoder
     	
-    	
+    	/*
     	OI.BottomLiftState state = OI.getBottomLiftState();
     	//possibly set state to false if button for other system is pressed
     	switch (state) {
@@ -50,6 +50,9 @@ public class OperateBottomLift extends CommandBase {
     		break;
     	}
     	}
+    	*/
+    	double power = OI.xboxControllerTwo.leftStick.getY();
+    	bottomLift.setMotorPower(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
