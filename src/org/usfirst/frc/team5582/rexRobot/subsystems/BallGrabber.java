@@ -42,5 +42,6 @@ public class BallGrabber extends Subsystem {
 		firstGrabberSolenoid.set(false);
 		secondGrabberSolenoid.set(false);
     }   
+
 }
 

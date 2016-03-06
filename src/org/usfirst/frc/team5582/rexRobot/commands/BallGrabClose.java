@@ -5,12 +5,12 @@ import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 /**
  *
  */
-public class ShootBall extends CommandBase {
+public class BallGrabClose extends CommandBase {
 
-    public ShootBall() {
+    public BallGrabClose() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(ballGrabber);
+    		requires(ballGrabber);
     }
 
     // Called just before this Command runs the first time
@@ -20,8 +20,7 @@ public class ShootBall extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	ballShooter.shooterPush();
-    	ballShooter.shooterRetract();
+    		ballGrabber.grabberGrab();
     	
     }
 

@@ -24,6 +24,7 @@ public class RotateWheelArms extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
+    		/*
     		OI.WheelArmsState state = OI.getWheelArmsState();
     		switch (state) {
     		case DOWN: {
@@ -39,7 +40,7 @@ public class RotateWheelArms extends CommandBase {
     			} else {
     				wheelArms.stop();
     			}
-    			*/
+    			
     			break;
     		}
     		case STOP: {
@@ -47,6 +48,10 @@ public class RotateWheelArms extends CommandBase {
     			break;
     		}
     		}
+    		*/
+    		double power = OI.xboxControllerOne.rightStick.getY();
+    		wheelArms.setMotorPower(power);
+    		
     		// This puts the position of the wheel arms on the screen
     		SmartDashboard.putNumber("Wheel Arms Position", wheelArms.getWheelArmsPosition());
     	}

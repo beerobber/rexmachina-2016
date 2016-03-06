@@ -52,6 +52,9 @@ public class WheelArms extends Subsystem {
 		myWheelArms.set(0);
 		SmartDashboard.putString("WheelArms motion", "stop");
     }
+    public void setMotorPower(double power) {
+    		myWheelArms.set(power);
+    }
     
     // Code creating a public variable with the wheel arms position
     	public double getWheelArmsPosition() {

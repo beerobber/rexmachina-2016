@@ -24,7 +24,8 @@ public class RobotMap {
     public static int secondGrabberSolenoid = 1;
     public static int firstGrabberSolenoid = 0;
     public static int liftSpark = 1;
-    public static int shooterSolenoid = 3;
+    public static int shooterSolenoidOne = 3;
+    public static int shooterSolenoidTwo = 2;
     public static int encoderLeftA = 0;
     public static int encoderLeftB = 1;
     
