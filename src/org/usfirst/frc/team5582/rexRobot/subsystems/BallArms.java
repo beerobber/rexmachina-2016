@@ -16,7 +16,7 @@ public class BallArms extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	Spark rotator = new Spark(RobotMap.liftSpark);
+	Spark rotator;
 	AnalogPotentiometer ballArmsPot;
 	
 	
@@ -34,7 +34,8 @@ public class BallArms extends Subsystem {
 	}
 	
     protected BallArms() {
-		ballArmsPot = new AnalogPotentiometer(RobotMap.ballArmsPot, 360, 0);
+    	rotator = new Spark(RobotMap.liftSpark);
+    	ballArmsPot = new AnalogPotentiometer(RobotMap.ballArmsPot, 360, 0);
     }
 	
     public void initDefaultCommand() {

@@ -76,7 +76,12 @@ public class BottomLift extends Subsystem {
 		SmartDashboard.putString("Scaler motion", "stop");
 	}
     public void setMotorPower(double power) {
-		bottomLiftMotorA.set(power);
-		bottomLiftMotorB.set(power);
+    	if (power < 0) {
+    		down();
+    	} else if (power > 0) {
+    		up();
+    	} else {
+    		stop();
+    	}
     }
 }
