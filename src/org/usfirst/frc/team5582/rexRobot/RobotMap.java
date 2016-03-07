@@ -30,11 +30,10 @@ public class RobotMap {
     public static int encoderLeftB = 1;
 	public static int wheelArmsPot = 3;
 	public static int ballArmsPot = 2;
-    
+	public static int ultrasonicSensorChannel = 0;
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;
     // public static int rangefinderModule = 1;
     
-    public static int ultrasonicSensorChannel = 3;
 }

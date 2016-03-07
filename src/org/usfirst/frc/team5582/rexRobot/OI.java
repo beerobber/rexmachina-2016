@@ -125,8 +125,8 @@ public class OI {
 		// armsDownButton = xboxControllerOne.rb;
 		// armsUpButton = xboxControllerOne.lb;
 		// WINCH
-		winchMotorUpButton = xboxControllerOne.x;
-		winchMotorDownButton = xboxControllerOne.a;
+		winchMotorUpButton = xboxControllerOne.a;
+		winchMotorDownButton = xboxControllerOne.x;
 		//BALL GRABBER
 		ballGrabClose = xboxControllerTwo.lb;
 		ballGrabOpen = xboxControllerTwo.rb;
