@@ -18,7 +18,7 @@ public class RotateWheelArms extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
 		SmartDashboard.putData(this);
-		SmartDashboard.putString("RotateArms init", "here");
+		SmartDashboard.putString("RotateWheelArms init", "here");
 		//wheelArms.initializeLimitCounter();
     }
 

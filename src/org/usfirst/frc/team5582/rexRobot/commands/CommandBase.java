@@ -40,6 +40,7 @@ public abstract class CommandBase extends Command {
 		ballGrabber = BallGrabber.getInstance();
 		ballShooter = BallShooter.getInstance();
 		winch = Winch.getInstance();
+		ballArms = BallArms.getInstance();
 		oi = new OI();
 		oi.init();
 	}

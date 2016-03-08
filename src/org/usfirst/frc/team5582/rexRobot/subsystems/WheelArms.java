@@ -33,7 +33,7 @@ public class WheelArms extends Subsystem {
 	}
 	
     protected WheelArms() {
-		myWheelArms = new Spark(RobotMap.wheelArms);
+		myWheelArms = new Spark(RobotMap.WheelArmsSpark);
 		wheelArmsPot = new AnalogPotentiometer(RobotMap.wheelArmsPot, 360, 30);
     }
     

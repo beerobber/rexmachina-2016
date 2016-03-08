@@ -18,6 +18,8 @@ public class RotateBallArms extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    		SmartDashboard.putData(this);
+		SmartDashboard.putString("RotateBallArms init", "here");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,7 +27,7 @@ public class RotateBallArms extends CommandBase {
     	
     	double power = OI.xboxControllerTwo.rightStick.getY();
     	ballArms.setMotorPower(power);
-    	SmartDashboard.putNumber("Wheel Arms Position", ballArms.getBallArmsPosition());
+    	SmartDashboard.putNumber("Ball Arms Position", ballArms.getBallArmsPosition());
     }
     
     /*

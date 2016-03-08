@@ -16,7 +16,7 @@ public class BallArms extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	Spark rotator = new Spark(RobotMap.liftSpark);
+	Spark rotator = new Spark(RobotMap.BallArmsSpark);
 	AnalogPotentiometer ballArmsPot;
 	
 	

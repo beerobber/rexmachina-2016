@@ -16,14 +16,14 @@ public class RobotMap {
     public static int leftMotorCANB = 4;
     public static int rightMotorCANA = 1;
     public static int rightMotorCANB = 2;
-    public static int wheelArms = 0;
     public static int bottomLiftMotorA = 6;
     public static int bottomLiftMotorB = 7;
     public static int topLiftMotor = 8;
     public static int winch = 5;
     public static int secondGrabberSolenoid = 1;
     public static int firstGrabberSolenoid = 0;
-    public static int liftSpark = 1;
+    public static int BallArmsSpark = 1;
+    public static int WheelArmsSpark = 0;
     public static int shooterSolenoidOne = 3;
     public static int shooterSolenoidTwo = 2;
     public static int encoderLeftA = 0;
