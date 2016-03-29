@@ -38,11 +38,11 @@ public class BallShooter extends Subsystem {
 }
     
     public void shooterPush() {
-		shooterSolenoidOne.set(true);
+		shooterSolenoidOne.set(false);
 		shooterSolenoidTwo.set(true);
     }
     public void shooterRetract() {
-    		shooterSolenoidOne.set(false);
-    		shooterSolenoidTwo.set(false);
+		shooterSolenoidTwo.set(false);
+    		shooterSolenoidOne.set(true);
     }  
 }

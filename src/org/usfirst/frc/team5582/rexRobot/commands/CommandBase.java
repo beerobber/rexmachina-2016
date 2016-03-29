@@ -3,17 +3,9 @@ package org.usfirst.frc.team5582.rexRobot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team5582.rexRobot.subsystems.AirCompressor;
+import edu.wpi.first.wpilibj.Timer;
 import org.usfirst.frc.team5582.rexRobot.OI;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BallShooter;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BottomLift;
-import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
-import org.usfirst.frc.team5582.rexRobot.subsystems.WheelArms;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BallGrabber;
-import org.usfirst.frc.team5582.rexRobot.subsystems.Winch;
-import org.usfirst.frc.team5582.rexRobot.subsystems.ErikTopLift;
-import org.usfirst.frc.team5582.rexRobot.subsystems.BallArms;
+import org.usfirst.frc.team5582.rexRobot.subsystems.*;
 
 /**
  *
@@ -30,6 +22,7 @@ public abstract class CommandBase extends Command {
 	public static BallShooter ballShooter;
 	public static ErikTopLift topLift;
 	public static BallArms ballArms;
+	public static Camera camera;
 	
 	public static void init() {
 		driveTrain = DriveTrain.getInstance();
@@ -41,6 +34,7 @@ public abstract class CommandBase extends Command {
 		ballShooter = BallShooter.getInstance();
 		winch = Winch.getInstance();
 		ballArms = BallArms.getInstance();
+		camera = Camera.getInstance();
 		oi = new OI();
 		oi.init();
 	}

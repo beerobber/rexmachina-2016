@@ -52,6 +52,7 @@ public class OperateBottomLift extends CommandBase {
     	}
     	*/
     	double power = OI.xboxControllerTwo.leftStick.getY();
+    	// the word 'control' 
     	bottomLift.setMotorPower(power);
     }
 

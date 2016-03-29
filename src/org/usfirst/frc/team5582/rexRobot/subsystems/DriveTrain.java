@@ -3,6 +3,7 @@ package org.usfirst.frc.team5582.rexRobot.subsystems;
 
 import org.usfirst.frc.team5582.rexRobot.RobotMap;
 import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
@@ -20,6 +22,7 @@ public class DriveTrain extends Subsystem {
 	CANTalon leftTalonA, leftTalonB, rightTalonA, rightTalonB;
     public AnalogInput ultrasonicSensor;
     public Encoder encoder;
+    private double time = 0;
 
 	// First, some Singleton housekeeping. Make sure there is only one.	
 	public static DriveTrain instance;
@@ -60,6 +63,12 @@ public class DriveTrain extends Subsystem {
     public void arcadeDriveStickAxis(double leftY, double leftX) {
     		rexDrive.arcadeDrive(leftY, leftX);
     		SmartDashboard.putNumber("Encoder value", encoder.getDistance());
+    }
+    public void arcadeDriveAutonomous() {
+    		rexDrive.setLeftRightMotorOutputs(0.75, -0.75);
+    }
+    public void stopDrive() {
+    		rexDrive.setLeftRightMotorOutputs(0, 0);
     }
     
     

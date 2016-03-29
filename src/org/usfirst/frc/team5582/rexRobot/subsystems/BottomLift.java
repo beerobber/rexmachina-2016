@@ -51,23 +51,23 @@ public class BottomLift extends Subsystem {
     		limitSwitchCounter.reset();
     }
     
-	public void down(){
+	public void down(double power){
 		
 		if (!wheelArmsLimitSwitch.get()) {
 			// Disallow downward force if limit switch is closed (assembly at rest)
 			bottomLiftMotorA.set(0);
 			bottomLiftMotorB.set(0);
 		} else {
-			bottomLiftMotorA.set(0.6);
-			bottomLiftMotorB.set(-0.6);
+			bottomLiftMotorA.set(-0.6);
+			bottomLiftMotorB.set(0.6);
 		}
 		
 
 		SmartDashboard.putString("Scaler motion", "down");
 	}
-	public void up() {
-		bottomLiftMotorA.set(-1);
-		bottomLiftMotorB.set(1);
+	public void up(double power) {
+		bottomLiftMotorA.set((power*-1));
+		bottomLiftMotorB.set(power);
 		SmartDashboard.putString("Scaler motion", "up");
 	}
 	public void stop() {
@@ -77,9 +77,9 @@ public class BottomLift extends Subsystem {
 	}
     public void setMotorPower(double power) {
     	if (power < 0) {
-    		down();
+    		down(power);
     	} else if (power > 0) {
-    		up();
+    		up(power);
     	} else {
     		stop();
     	}

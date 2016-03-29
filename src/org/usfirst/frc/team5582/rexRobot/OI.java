@@ -103,6 +103,8 @@ public class OI {
 	public static Button ballGrabClose;
 	public static Button ballGrabOpen;
 	public static Button ballShoot;
+	public static Button ballExtend;
+	public static Button ballRetract;
 	
 	
 	public static void init()
@@ -132,8 +134,13 @@ public class OI {
 		ballGrabOpen = xboxControllerTwo.rb;
 		ballGrabOpen.whenPressed(new BallGrabOpen());
 		ballGrabClose.whenPressed(new BallGrabClose());
-		ballShoot = xboxControllerTwo.a;
-		ballShoot.whenPressed(new ShootBall());
+		// ballShoot = xboxControllerTwo.a;
+		// ballShoot.whenPressed(new ShootBall());
+		ballExtend = xboxControllerTwo.a;
+		ballRetract = xboxControllerTwo.b;
+		ballExtend.whenPressed(new ExtendShooter());
+		ballRetract.whenPressed(new RetractShooter());
+		
 		
 			
 	}	

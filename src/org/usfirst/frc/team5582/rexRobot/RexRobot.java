@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
+import org.usfirst.frc.team5582.rexRobot.commands.*;
 import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 
 /**
@@ -18,9 +18,14 @@ import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
  * 
 
  */
+
+//TODO Get camera feed for smartdashboard
 public class RexRobot extends IterativeRobot {
 
     Command firstCommand;
+    Command autonomousCommand;
+    Command cameraCommand;
+    Command autonomousWinch;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -29,6 +34,9 @@ public class RexRobot extends IterativeRobot {
     public void robotInit() {
 		CommandBase.init();
 		firstCommand = new ArcadeDrive();
+		autonomousCommand = new AutonomousDriving();
+		cameraCommand = new ViewCamera();
+		autonomousWinch = new AutonomousWinch();
    }
 	
 	/**
@@ -45,18 +53,20 @@ public class RexRobot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-        
+    		if (autonomousCommand != null) autonomousCommand.start();
+    		// autonomousWinch.start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+       Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
         Scheduler.getInstance().add(firstCommand);
+        Scheduler.getInstance().add(cameraCommand);
         SmartDashboard.putData(Scheduler.getInstance());
     }
 

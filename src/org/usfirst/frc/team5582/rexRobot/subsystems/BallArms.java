@@ -46,13 +46,20 @@ public class BallArms extends Subsystem {
     }
     
     public void setMotorPower(double power) {
-    		rotator.set(power);
+    		//rotator.set((power*0.5));
+    		if (power > 0) {
+    			// Up (negative)
+    			rotator.set(Math.abs(power)*-1.0);
+    		} else {
+    			// Down (positive)
+    			rotator.set(Math.abs(power*power*power));
+    		}
     }
 	public void setMotorPowerDown(double power) {
-		rotator.set(Math.abs(power));
+		rotator.set((Math.abs(power))*0.4);
     }
     public void setMotorPowerUp(double power) {
-		rotator.set(-(Math.abs(power)));
+		rotator.set((-(Math.abs(power)))*0.4);
     }
 	public double getBallArmsPosition() {
 		return ballArmsPot.get();

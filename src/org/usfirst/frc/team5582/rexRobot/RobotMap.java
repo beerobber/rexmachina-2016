@@ -20,12 +20,12 @@ public class RobotMap {
     public static int bottomLiftMotorB = 7;
     public static int topLiftMotor = 8;
     public static int winch = 5;
-    public static int secondGrabberSolenoid = 1;
-    public static int firstGrabberSolenoid = 0;
+    public static int grabberSolenoidOne = 0;
+    public static int grabberSolenoidTwo = 2;
+    public static int shooterSolenoidOne = 1;
+    public static int shooterSolenoidTwo = 3;
     public static int BallArmsSpark = 1;
     public static int WheelArmsSpark = 0;
-    public static int shooterSolenoidOne = 3;
-    public static int shooterSolenoidTwo = 2;
     public static int encoderLeftA = 0;
     public static int encoderLeftB = 1;
 	public static int wheelArmsPot = 3;

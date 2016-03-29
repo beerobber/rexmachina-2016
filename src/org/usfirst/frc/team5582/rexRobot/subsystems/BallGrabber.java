@@ -15,8 +15,9 @@ public class BallGrabber extends Subsystem {
      * The BallGrabber is the entire rotating assembly. It carries the BallPinchers
      * subsystem, but the BallPinchers subsystem can be operated independently.	
      */ 
-	Solenoid secondGrabberSolenoid = new Solenoid(RobotMap.secondGrabberSolenoid);
-	Solenoid firstGrabberSolenoid = new Solenoid(RobotMap.firstGrabberSolenoid);
+	Solenoid grabberSolenoidOne = new Solenoid(RobotMap.grabberSolenoidOne);
+	Solenoid grabberSolenoidTwo = new Solenoid(RobotMap.grabberSolenoidTwo);
+	
 	public static BallGrabber instance;
 	
 	public static BallGrabber getInstance() {
@@ -31,16 +32,18 @@ public class BallGrabber extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here. Or don't.
-        setDefaultCommand(new GrabBall());
     }
     
     public void grabberGrab() {
-		firstGrabberSolenoid.set(true);
-		secondGrabberSolenoid.set(true);
+		grabberSolenoidOne.set(false);
+		grabberSolenoidTwo.set(true);
+		SmartDashboard.putString("grabber", "grab");
+
     }
     public void grabberRelease() {
-		firstGrabberSolenoid.set(false);
-		secondGrabberSolenoid.set(false);
+    		grabberSolenoidTwo.set(false);
+		grabberSolenoidOne.set(true);
+		SmartDashboard.putString("grabber", "release");
     }   
 
 }
