@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5582.rexRobot.subsystems;
+/*package org.usfirst.frc.team5582.rexRobot.subsystems;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -21,7 +21,7 @@ public class NavX extends Subsystem {
     		try {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
-            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. *
             ahrs = new AHRS(SPI.Port.kMXP);
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
@@ -41,4 +41,4 @@ public class NavX extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 }
-
+*/

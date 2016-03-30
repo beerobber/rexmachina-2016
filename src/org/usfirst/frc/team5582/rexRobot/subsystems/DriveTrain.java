@@ -23,6 +23,8 @@ public class DriveTrain extends Subsystem {
     public AnalogInput ultrasonicSensor;
     public Encoder encoder;
     private double time = 0;
+    private double limit = 0.004;
+    private double motorOutputValue = 0;
 
 	// First, some Singleton housekeeping. Make sure there is only one.	
 	public static DriveTrain instance;
@@ -65,12 +67,15 @@ public class DriveTrain extends Subsystem {
     		SmartDashboard.putNumber("Encoder value", encoder.getDistance());
     }
     public void arcadeDriveAutonomous() {
-    		rexDrive.setLeftRightMotorOutputs(0.75, -0.75);
+    		double change = 0.75 - motorOutputValue;
+    		if (change > limit) change = limit;
+    		else if (change < -limit) change = -limit;
+    		motorOutputValue += change;
+    		rexDrive.setLeftRightMotorOutputs(motorOutputValue, -motorOutputValue);
     }
     public void stopDrive() {
     		rexDrive.setLeftRightMotorOutputs(0, 0);
     }
-    
     
 }
 
