@@ -1,25 +1,25 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5582.rexRobot.OI;
+import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
 
 /**
  *
  */
-public class ArcadeDrive extends CommandBase {
+public class ViewCamera extends CommandBase {
 
-    public ArcadeDrive() {
-    		requires(driveTrain);
+    public ViewCamera() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    		requires(camera);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        SmartDashboard.putData(this);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		driveTrain.arcadeDriveStickAxis(OI.xboxControllerOne.leftStick.getY(), OI.xboxControllerOne.leftStick.getX());
+    //	camera.getCameraFeed(); *This is likely the only problem (unless it needs to be put to dashboard somehow)
     }
 
     // Make this return true when this Command no longer needs to run execute()

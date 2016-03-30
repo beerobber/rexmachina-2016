@@ -1,52 +1,110 @@
 package org.usfirst.frc.team5582.rexRobot;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.Joystick;
-
-import org.usfirst.frc.team5582.rexRobot.commands.ErikFollowObject;
-
 import edu.wpi.first.wpilibj.DriverStation;
+import org.usfirst.frc.team5582.rexRobot.subsystems.*;
+import org.usfirst.frc.team5582.rexRobot.commands.*;
+import edu.wpi.first.wpilibj.buttons.Button;
+
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-     //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Button button = new JoystickButton(stick, buttonNumber);
+
     
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-	
-	 // Detects when followButton is pressed and activates FollowObject
-    
-	
+	// WHEEL ARMS STATE
+    public enum WheelArmsState {
+    		DOWN("down"), UP("up"), STOP("stop");
+    		String state;
+    		
+    		private WheelArmsState(String stateIn) {
+    			this.state = stateIn;
+    		}
+    		public String toString() {
+    			return "WheelArmsState" + this.state;
+    		}
+    }
+    // WINCH STATE
+    public enum WinchState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private WinchState(String stateIn) {
+			this.state = stateIn;
+		}
+		public String toString() {
+			return "WinchState" + this.state;
+		}
+}
+    // BOTTOM LIFT STATE
+    public enum BottomLiftState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private BottomLiftState(String stateIn) {
+			this.state = stateIn;
+		}
+		public String toString() {
+			return "BottomLiftState" + this.state;
+		}
+    }
+    // TOP LIFT STATE
+    public enum TopLiftState {
+		DOWN("down"), UP("up"), STOP("stop");
+		String state;
+		
+		private TopLiftState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "TopLiftState" + this.state;
+		}
+    }
+    // GRABBER ARMS STATE
+    public enum GrabberArmsState {
+		GRABBED("grabbed"), RELEASED("released"), STOP("stop");
+		String state;
+		
+		private GrabberArmsState(String stateIn) {
+			this.state = stateIn;
+		}
+		
+		public String toString() {
+			return "GrabberArmsState" + this.state;
+		}
+		
+    }
+
     
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	
 	public static DriverStation driverStation;
-	public static Joystick tankLeftStick;
-	public static Joystick tankRightStick;
-	public static Joystick arcadeStick;
+	public static XboxController xboxControllerOne;
+	public static XboxController xboxControllerTwo;
 	public static Button followButton;
+	// wheel arms
+	public static Button armsDownButton;
+	public static Button armsUpButton;
+	// bottom lift
+	public static Button bottomLiftUp;
+	public static Button bottomLiftDown;
+	//top lift
+	public static Button topLiftUp;
+	public static Button topLiftDown;
+	// winch motor
+	public static Button winchMotorUpButton;
+	public static Button winchMotorDownButton;
+	// Ball Arm Buttons
+	public static Button ballGrabClose;
+	public static Button ballGrabOpen;
+	public static Button ballShoot;
+	public static Button ballExtend;
+	public static Button ballRetract;
 	
 	
 	public static void init()
@@ -54,26 +112,87 @@ public class OI {
 		driverStation = DriverStation.getInstance();
 		
 		// Tank controls
-		tankLeftStick = new Joystick(0);
-		tankRightStick = new Joystick(1);
+		xboxControllerOne = new XboxController(RobotMap.xboxControllerOne);
+		xboxControllerTwo = new XboxController(RobotMap.xboxControllerTwo);
+		xboxControllerOne.setDeadZone(0.1);
+		xboxControllerTwo.setDeadZone(0.1);
+		/** BUTTONS **/
+		// BOTTOM LIFT
+		// bottomLiftUp = xboxControllerTwo.rt;
+		// bottomLiftDown = xboxControllerTwo.lt;
+		//TOP LIFT
+		topLiftUp = xboxControllerTwo.y;
+		topLiftDown = xboxControllerTwo.x;
+		// WHEEL ARMS
+		// armsDownButton = xboxControllerOne.rb;
+		// armsUpButton = xboxControllerOne.lb;
+		// WINCH
+		winchMotorUpButton = xboxControllerOne.a;
+		winchMotorDownButton = xboxControllerOne.x;
+		//BALL GRABBER
+		ballGrabClose = xboxControllerTwo.lb;
+		ballGrabOpen = xboxControllerTwo.rb;
+		ballGrabOpen.whenPressed(new BallGrabOpen());
+		ballGrabClose.whenPressed(new BallGrabClose());
+		// ballShoot = xboxControllerTwo.a;
+		// ballShoot.whenPressed(new ShootBall());
+		ballExtend = xboxControllerTwo.a;
+		ballRetract = xboxControllerTwo.b;
+		ballExtend.whenPressed(new ExtendShooter());
+		ballRetract.whenPressed(new RetractShooter());
 		
-		// Just a convenience reference
-		arcadeStick = tankLeftStick;
 		
-		// Buttons
-		followButton = new JoystickButton(arcadeStick, 6);
-		followButton.whileHeld(new ErikFollowObject());
 			
+	}	
+	// WHEEL ARMS STATE
+	public static WheelArmsState getWheelArmsState() {
+		if (armsDownButton.get()) {
+			return WheelArmsState.DOWN;
+		} else if (armsUpButton.get()) {
+			return WheelArmsState.UP;
+		} else {
+			return WheelArmsState.STOP;
+		}
+	}
+	// WINCH STATE
+	public static WinchState getWinchState() {
+		if (winchMotorDownButton.get()) {
+			return WinchState.DOWN;
+		} else if (winchMotorUpButton.get()) {
+			return WinchState.UP;
+		} else {
+			return WinchState.STOP;
+		}
+	}
+	// BOTTOM LIFT STATE
+	public static BottomLiftState getBottomLiftState(){
+		if (bottomLiftUp.get()) {
+			return BottomLiftState.UP;
+		} else if (bottomLiftDown.get()) {
+			return BottomLiftState.DOWN;
+		} else {
+			return BottomLiftState.STOP;
+		}
+	}
+	// TOP LIFT STATE
+	public static TopLiftState getTopLiftState(){
+		if (topLiftUp.get()) {
+			return TopLiftState.UP;
+		} else if (topLiftDown.get()) {
+			return TopLiftState.DOWN;
+		} else {
+			return TopLiftState.STOP;
+		}
+	}
+	// GRABBER ARMS STATE
+	public static GrabberArmsState getGrabberArmsState(){
+		if (ballGrabClose.get()) {
+			return GrabberArmsState.GRABBED;
+		} else if (ballGrabOpen.get()){
+			return GrabberArmsState.RELEASED;
+		} else {
+			return GrabberArmsState.STOP;
+		}
 	}
 
-    public static double getArcadeJoystickX()
-    {
-      return arcadeStick.getX();
-    }
-
-    public static double getArcadeJoystickY()
-    {
-      return arcadeStick.getY();
-    }
 }
-

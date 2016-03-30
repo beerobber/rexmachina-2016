@@ -1,25 +1,20 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5582.rexRobot.OI;
+public class ManageAirCompressor extends CommandBase {
 
-/**
- *
- */
-public class ArcadeDrive extends CommandBase {
-
-    public ArcadeDrive() {
-    		requires(driveTrain);
+    public ManageAirCompressor() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    		requires(airCompressor);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        SmartDashboard.putData(this);
+    		airCompressor.compressAir();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		driveTrain.arcadeDriveStickAxis(OI.xboxControllerOne.leftStick.getY(), OI.xboxControllerOne.leftStick.getX());
     }
 
     // Make this return true when this Command no longer needs to run execute()

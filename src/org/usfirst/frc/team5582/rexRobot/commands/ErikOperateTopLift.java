@@ -1,25 +1,40 @@
 package org.usfirst.frc.team5582.rexRobot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5582.rexRobot.OI;
 
 /**
  *
  */
-public class ArcadeDrive extends CommandBase {
+public class ErikOperateTopLift extends CommandBase {
 
-    public ArcadeDrive() {
-    		requires(driveTrain);
+    public ErikOperateTopLift() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(topLift);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        SmartDashboard.putData(this);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		driveTrain.arcadeDriveStickAxis(OI.xboxControllerOne.leftStick.getY(), OI.xboxControllerOne.leftStick.getX());
+    	OI.TopLiftState state = OI.getTopLiftState();
+    	
+    	switch(state){
+    	case DOWN: {
+    		topLift.down();
+    		break;
+    	}
+    	case UP: {
+    		topLift.up();
+    		break;
+    	}
+    	case STOP:{
+    		topLift.stop();
+    	}
+    	}
+    	//make the encoder once set up output to smart dashboard.
     }
 
     // Make this return true when this Command no longer needs to run execute()

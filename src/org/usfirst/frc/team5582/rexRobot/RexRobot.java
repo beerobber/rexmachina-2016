@@ -1,16 +1,14 @@
 
 package org.usfirst.frc.team5582.rexRobot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team5582.rexRobot.commands.ArcadeDrive;
-import org.usfirst.frc.team5582.rexRobot.commands.CommandBase;
-import org.usfirst.frc.team5582.rexRobot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team5582.rexRobot.subsystems.*;
+import org.usfirst.frc.team5582.rexRobot.commands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,13 +17,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  * 
- * Branch by Erik H.
- * 
+
  */
+
+//TODO Get camera feed for smartdashboard
 public class RexRobot extends IterativeRobot {
 
     Command firstCommand;
-    AnalogInput ultrasonicSensor;
+    Command autonomousCommand;
+    Command cameraCommand;
+    Command autonomousWinch;
+    CameraServer camera;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -33,9 +35,14 @@ public class RexRobot extends IterativeRobot {
      */
     public void robotInit() {
 		CommandBase.init();
+	 	  camera = CameraServer.getInstance();
+	   	  camera.setQuality(50);
+	  	  camera.startAutomaticCapture("cam0");
 		firstCommand = new ArcadeDrive();
-		
-    }
+		autonomousCommand = new AutonomousDriving();
+		cameraCommand = new ViewCamera();
+		autonomousWinch = new AutonomousWinch();
+   }
 	
 	/**
      * This function is called once each time the robot enters Disabled mode.
@@ -51,18 +58,21 @@ public class RexRobot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-        
+    		if (autonomousCommand != null) autonomousCommand.start();
+    		// autonomousWinch.start();
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
+       Scheduler.getInstance().run();
     }
 
     public void teleopInit() {
         Scheduler.getInstance().add(firstCommand);
+        Scheduler.getInstance().add(cameraCommand);
+        SmartDashboard.putData(Scheduler.getInstance());
     }
 
     /**
@@ -70,7 +80,6 @@ public class RexRobot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-   
     }
     
     /**
